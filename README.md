@@ -1,1 +1,0 @@
-# wasota_core
