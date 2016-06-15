@@ -57,15 +57,17 @@ public class AllContextTemplate {
 			// search for some context
 			StmtIterator contextList = WasotaGraph.getModel().listStatements(null, null,
 					ResourceFactory.createResource(_context));
-//			System.out.println(_context.toString());
+			// System.out.println(_context.toString());
 
 			while (contextList.hasNext()) {
 				Statement r = contextList.next();
 				StmtIterator identifier = WasotaGraph.getModel().listStatements(r.getSubject(), MexPredicates.label,
 						(RDFNode) null);
-				String label = identifier.next().getObject().toString();
-				context.put(r.getObject().toString(), label);
-//				System.out.println(label);
+				if (identifier.hasNext()) {
+					String label = identifier.next().getObject().toString();
+					context.put(r.getObject().toString(), label);
+				}
+				// System.out.println(label);
 			}
 
 		}
