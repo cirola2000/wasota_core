@@ -8,6 +8,14 @@ public class CurrentGraphService {
 	/**
 	 * Current implemented service for graphService
 	 */
-	public static GraphServiceInterface graphService = new GraphServiceImpl();
+	private static GraphServiceInterface graphService = null;
+	
+	public static GraphServiceInterface getGraphService(){
+		if(graphService == null){
+			graphService = new GraphServiceImpl();
+		}
+		
+		return graphService;
+	}
 
 }

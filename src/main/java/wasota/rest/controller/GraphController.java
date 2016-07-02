@@ -30,7 +30,7 @@ public class GraphController {
 		String namedGraph = JSONUtils.getField(body.toString(), "namedGraph");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
-		CurrentGraphService.graphService.createGraph(graph, namedGraph, format);
+		CurrentGraphService.getGraphService().createGraph(graph, namedGraph, format);
 
 	}
 

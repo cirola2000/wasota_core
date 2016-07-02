@@ -98,41 +98,6 @@ public class GraphServiceImpl implements GraphServiceInterface {
 			throw new NotPossibleToSaveGraph(e.getMessage());
 		}
 		return true;
-
-		// WasotaDataset dataset = new WasotaDataset(namedGraph, format, graph);
-		//
-		// if (dataset.saveToFile())
-		// logger.info("Graph " + namedGraph + " added.");
-		// else
-		// logger.error("Error adding graph: " + namedGraph);
-		//
-		// // case there is an user, update the relation user-graph in mongodb
-		// if (user != null) {
-		// UserModel userDB = new UserModel(user);
-		// UserGraph userGraph = new UserGraph(namedGraph,
-		// dataset.getFileName(), user);
-		// userGraph.update(true);
-		//
-		// // now update the relation graph-experiment
-		// try {
-		// WasotaGraph wgraph = new WasotaGraph(graph,format);
-		// wgraph.addMexNamespacesToModel();
-		// for(WasotaPerformanceModel model :
-		// wgraph.graphExtractor.getAllFinalPerformanceList()){
-		// UserExperiment graphExperiment = new UserExperiment(model.url,
-		// userDB.getID());
-		// graphExperiment.setVisible(true);
-		// graphExperiment.update(true);
-		// }
-		//
-		// } catch (CannotAddMexNamespaces e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (UnsupportedEncodingException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
 	}
 
 	public WasotaGraphInterface loadGraph(String namedGraph) throws NotPossibleToLoadGraph {

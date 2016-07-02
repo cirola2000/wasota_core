@@ -35,7 +35,7 @@ public class UserController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		// case there is, link the graph and experiments with the user
-		CurrentGraphService.graphService.createGraphWithUser(graph, namedGraph, auth.getName(), format);
+		CurrentGraphService.getGraphService().createGraphWithUser(graph, namedGraph, auth.getName(), format);
 
 	}
 
