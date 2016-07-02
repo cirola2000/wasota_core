@@ -11,7 +11,6 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 import wasota.exceptions.CannotAddMexNamespaces;
-import wasota.graph.WasotaGraphA;
 import wasota.properties.WasotaProperties;
 import wasota.services.graph.WasotaGraphInterface;
 import wasota.services.graph.WasotaGraphQueries;
@@ -30,7 +29,7 @@ public class WasotaGraphJenaImpl implements WasotaGraphInterface {
 		if (model.write(out, "TTL") != null)
 			return true;
 		return false;
-	}
+	} 
 
 	@Override
 	public void readAsStream(InputStream in, String format) {

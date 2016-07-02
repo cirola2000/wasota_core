@@ -14,7 +14,6 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 
-import wasota.graph.WasotaMainGraph;
 import wasota.graph.WasotaPerformanceModel;
 import wasota.ontology.MexPredicates;
 import wasota.services.graph.WasotaGraphQueries;
@@ -42,7 +41,7 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 
 		// get all mex context
 
-		HashSet<String> allContext = new HashSet<String>();
+		HashSet<String> allContext = new HashSet<String>(); 
 
 		StmtIterator contextIt = model.listStatements(null, MexPredicates.subClassOf, MexPredicates.MEX_CONTEXT);
 

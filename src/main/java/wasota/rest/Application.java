@@ -17,8 +17,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import wasota.exceptions.CannotAddMexNamespaces;
-import wasota.graph.WasotaMainGraph;
 import wasota.properties.WasotaProperties;
 import wasota.services.authentication.UserAuth;
 import wasota.services.currentservices.CurrentAuthenticationService;
@@ -36,18 +34,9 @@ public class Application {
 	public static void main(String[] args) {
 
 		new WasotaProperties().loadProperties();
-
 		SpringApplication.run(Application.class, args);
-		try {
-			WasotaMainGraph.mainGraph.addMexNamespacesToModel();
-		} catch (CannotAddMexNamespaces e) {
-			e.printStackTrace();
-		}
-
-		WasotaMainGraph.mainGraph.loadModelsFromDisk();
 
 	}
-
 }
 
 @Configuration

@@ -1,13 +1,9 @@
 package wasota.rest.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
-import wasota.graph.WasotaMainGraph;
 import wasota.graph.WasotaPerformanceModel;
 import wasota.services.graph.WasotaGraphInterface;
 
@@ -25,7 +21,7 @@ public class WasotaPerformance {
 
 		// get all application for the context
 		List<String> appList = wasotaGraph.query().getAlgorithmList(context);
-
+ 
 		// get list of experiment
 		List<String> expList = wasotaGraph.query().getExperimentList(appList);
 
@@ -42,7 +38,7 @@ public class WasotaPerformance {
 		performanceTypeList.add(performanceType);
 
 		// get all performance types
-		performanceListFinal = WasotaMainGraph.mainGraph.graphExtractor
+		performanceListFinal = wasotaGraph.query()
 				.getFinalPerformanceList(measureClassification, performanceTypeList);
 		
 		Collections.sort(performanceListFinal);
