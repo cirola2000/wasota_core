@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
-import wasota.graph.WasotaGraph;
+import wasota.graph.WasotaMainGraph;
 import wasota.properties.WasotaProperties;
 import wasota.utils.FileUtils;
 import wasota.utils.Formats;
@@ -24,11 +24,14 @@ public class WasotaDataset {
 	
 	private Model model;
 	
+	private String fileName;
+	
 	public WasotaDataset(String namedGraph, String format, String graph) {
 		this.namedGraph = namedGraph;
 		model = ModelFactory.createDefaultModel();
 		this.format = Formats.getJenaFormat(format);
 		hash = FileUtils.stringToHash(namedGraph);
+		setFileName(hash);
 		try {
 			model.read(new ByteArrayInputStream(graph.getBytes("UTF-8")), null, this.format);
 		} catch (UnsupportedEncodingException e) {
@@ -37,18 +40,20 @@ public class WasotaDataset {
 	}
 	
 	
-	public void saveToFile(){
+	public Boolean saveToFile(){
 		try {
 			model.write(new FileOutputStream(new File(
-					WasotaProperties.BASE_PATH + hash)),"TTL");
+					getFileName())),"TTL");
 			
-			WasotaGraph.addDatasetToIndex(hash, namedGraph);
+			WasotaMainGraph.mainGraph.addDatasetToIndex(hash, namedGraph);
 			
-			WasotaGraph.startModel();
+			WasotaMainGraph.mainGraph.loadModelsFromDisk();
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 
@@ -81,6 +86,12 @@ public class WasotaDataset {
 		this.format = format;
 	}
 	
+	public void setFileName(String file){
+		this.fileName = WasotaProperties.BASE_PATH + file;
+	}
 	
+	public String getFileName(){
+		return this.fileName;
+	}
 	
 }

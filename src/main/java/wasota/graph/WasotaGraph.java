@@ -1,5 +1,6 @@
 package wasota.graph;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,45 +9,87 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.HashMap;
+
+import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
+import wasota.exceptions.CannotAddMexNamespaces;
 import wasota.properties.WasotaProperties;
+import wasota.rest.controller.GraphController;
+import wasota.utils.Formats;
 
-public class WasotaGraph {
+public class WasotaGraph extends WasotaGraphA {
 
-	private static Model model = ModelFactory.createDefaultModel();
-
-	private static HashMap<String, String> hashName = new HashMap<String, String>();
-
-	public static void mergeToModel(Model m) {
-		model.add(m);
+	final static Logger logger = Logger.getLogger(WasotaGraphA.class);
+	
+	public WasotaGraph() {
+		super();
+	}
+	public WasotaGraph(String graph, String format) throws UnsupportedEncodingException{
+		super();
+		mainModel.read(new ByteArrayInputStream(graph.getBytes("UTF-8")), null, Formats.getJenaFormat(format));
+		logger.info("New Wasota graph created.");
 	}
 
-	public static void addToModel(InputStream stream) {
+	/**
+	 * Merge a JENA graph to the main model
+	 * 
+	 * @param model
+	 */
+	public void mergeToMainModel(Model model) {
+		mainModel.add(model);
+	}
+
+	/**
+	 * Merge a JENA graph (as inputstream) to model
+	 * 
+	 * @param graphStream
+	 */
+	public void mergeToMainModel(InputStream graphStream) {
 		Model m = ModelFactory.createDefaultModel();
-		m.read(stream, null, "TTL");
-		mergeToModel(m);
+		m.read(graphStream, null, "TTL");
+		mergeToMainModel(m);
 	}
 
-	public static Model getModel() {
-		return model;
+	/**
+	 * Get the main model
+	 * 
+	 * @return model
+	 */
+	public Model getMainModel() {
+		return mainModel;
 	}
 
-	public static void startModel() {
+	/**
+	 * Start the main model adding MEX namespaces
+	 * 
+	 * @throws CannotAddMexNamespaces
+	 */
+	public void addMexNamespacesToModel() throws CannotAddMexNamespaces {
 		// get core model, peformance and algo
 		try {
-			addToModel(new URL(WasotaProperties.MEX_CORE_DOWNLOAD).openConnection().getInputStream());
-			addToModel(new URL(WasotaProperties.MEX_PERF_DOWNLOAD).openConnection().getInputStream());
-			addToModel(new URL(WasotaProperties.MEX_ALGO_DOWNLOAD).openConnection().getInputStream());
+			mergeToMainModel(new URL(WasotaProperties.MEX_CORE_DOWNLOAD).openConnection().getInputStream());
+			mergeToMainModel(new URL(WasotaProperties.MEX_PERF_DOWNLOAD).openConnection().getInputStream());
+			mergeToMainModel(new URL(WasotaProperties.MEX_ALGO_DOWNLOAD).openConnection().getInputStream());
+			
+			logger.debug("MEX namespaces added to graph.");
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			throw new CannotAddMexNamespaces("We couldn't load the MEX namespaces to the Model.");
 		}
 
+	}
+
+	/**
+	 * Load models from disk to model
+	 */
+	public void loadModelsFromDisk() {
 		// get files
 		File folder = new File(WasotaProperties.BASE_PATH);
 		File[] listOfFiles = folder.listFiles();
@@ -54,7 +97,7 @@ public class WasotaGraph {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
 				try {
-					addToModel(new FileInputStream(listOfFiles[i]));
+					mergeToMainModel(new FileInputStream(listOfFiles[i]));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -62,10 +105,9 @@ public class WasotaGraph {
 		}
 
 		loadHashName();
-
 	}
 
-	private static void saveHashName() {
+	private void saveHashName() {
 		try {
 			FileOutputStream fos = new FileOutputStream(new File(WasotaProperties.INDEX_PATH));
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -79,7 +121,7 @@ public class WasotaGraph {
 		}
 	}
 
-	private static void loadHashName() {
+	private void loadHashName() {
 		try {
 			File f = new File(WasotaProperties.INDEX_PATH);
 			if (!f.exists())
@@ -99,12 +141,12 @@ public class WasotaGraph {
 		}
 	}
 
-	public static void addDatasetToIndex(String hash, String name) {
+	public void addDatasetToIndex(String hash, String name) {
 		hashName.put(hash, name);
 		saveHashName();
 	}
 
-	public static Boolean queryIndex(String hash) {
+	public Boolean queryIndex(String hash) {
 		if (hashName.containsKey(hash))
 			return true;
 		return false;
