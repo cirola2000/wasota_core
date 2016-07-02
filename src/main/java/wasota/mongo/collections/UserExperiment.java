@@ -18,6 +18,12 @@ public class UserExperiment extends MongoSuperClass {
 		setUser(user);
 		setExperiment(experiment);
 	}
+	
+	public UserExperiment(String experiment) {
+		super(COLLECTION);
+		addKey(EXPERIMENT);
+		setExperiment(experiment);
+	}
 
 
 	public String getUser() {

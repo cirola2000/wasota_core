@@ -2,6 +2,7 @@ package wasota.services.graph;
 
 import wasota.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.exceptions.graph.NotPossibleToSaveGraph;
+import wasota.services.authentication.UserAuth;
 
 public interface GraphServiceInterface {
 	public Boolean createGraph(String graph, String namedGraph, String format) throws NotPossibleToSaveGraph;

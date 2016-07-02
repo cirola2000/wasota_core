@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import wasota.graph.WasotaPerformanceModel;
+import wasota.services.currentservices.CurrentExperimentService;
 import wasota.services.graph.WasotaGraphInterface;
 
 public class WasotaPerformance {
@@ -13,7 +14,9 @@ public class WasotaPerformance {
 		performanceByContextAndType(context, performanceType, wasotaGraph);
 	}
 
-	public List<WasotaPerformanceModel> performanceListFinal;
+	private List<WasotaPerformanceModel> performanceList;
+
+	public List<WasotaPerformanceModel> performanceListFinal = new ArrayList<>();
 
 	public List<WasotaPerformanceModel> performanceByContextAndType(String context, String performanceType, WasotaGraphInterface wasotaGraph) {
 
@@ -38,8 +41,16 @@ public class WasotaPerformance {
 		performanceTypeList.add(performanceType);
 
 		// get all performance types
-		performanceListFinal = wasotaGraph.query()
+		performanceList = wasotaGraph.query()
 				.getFinalPerformanceList(measureClassification, performanceTypeList);
+		
+		
+		
+		for(WasotaPerformanceModel performance : performanceList){
+			if(CurrentExperimentService.getGraphStore().isPublic(performance.url)){
+				performanceListFinal.add(performance);
+			}
+		}
 		
 		Collections.sort(performanceListFinal);
 		

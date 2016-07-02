@@ -15,6 +15,7 @@ import wasota.mongo.collections.UserGraph;
 import wasota.mongo.exceptions.MissingPropertiesException;
 import wasota.mongo.exceptions.NoPKFoundException;
 import wasota.mongo.exceptions.ObjectAlreadyExistsException;
+import wasota.services.authentication.UserAuth;
 import wasota.services.currentservices.CurrentWasotaGraph;
 import wasota.services.graph.GraphServiceInterface;
 import wasota.services.graph.GraphStoreInterface;
