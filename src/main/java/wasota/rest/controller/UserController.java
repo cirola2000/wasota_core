@@ -15,31 +15,64 @@ import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
 import wasota.core.models.WasotaPerformanceModel;
 import wasota.utils.JSONUtils;
 
+/**
+ * 
+ * @author Ciro Baron Neto
+ * 
+ *         Jul 3, 2016
+ */
 @RestController
 public class UserController {
 
+	/**
+	 * Add a new user
+	 * 
+	 * @param body
+	 *            - should be a PUT with a JSON body containing a 'user',
+	 *            'email', and a 'password' key. An example of body to retrieve
+	 *            all accuracy of fact prediction:
+	 *            "{'user':'ciro', 'password': 'mypassword', 'email':'myemail@gmail.com'}"
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/user/add", method = RequestMethod.PUT)
 	public void addUser(@RequestBody String body) throws Exception {
 
 		WasotaAPI.getAuthService().addUser(new JSONObject(body).get("user").toString(),
-				new JSONObject(body).get("email").toString(), new JSONObject(body).get("pass").toString());
+				new JSONObject(body).get("email").toString(), new JSONObject(body).get("password").toString());
 
 	}
 
+	/**
+	 * Add new private (binded to a user) graph in Wasota
+	 * 
+	 * @param body
+	 *            - should be a PUT with a JSON body containing a 'format',
+	 *            'graphName' and 'graph' key. Example: '{"format":"ttl",
+	 *            "graph":". . . (your RDF here) . . .", "graphName":
+	 *            "myNamedGraph"}'
+	 * @throws NotPossibleToSaveGraph
+	 * @throws ParameterNotFound
+	 */
 	@RequestMapping(value = "/user/graph/add", method = RequestMethod.PUT)
-	public void addUserGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound  {
+	public void addUserGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
 
 		// get all parameters from POST request
 		String format = JSONUtils.getField(body.toString(), "format");
-		String namedGraph = JSONUtils.getField(body.toString(), "namedGraph");
+		String graphName = JSONUtils.getField(body.toString(), "graphName");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
 		// case there is, link the graph and experiments with the user
-		WasotaAPI.getGraphService().createGraphWithUser(graph, namedGraph, WasotaAPI.getAuthService().getAuthenticatedUser().getUser(), format);
+		WasotaAPI.getGraphService().createGraphWithUser(graph, graphName,
+				WasotaAPI.getAuthService().getAuthenticatedUser().getUser(), format);
 	}
 
+	/**
+	 * Return a list of graphs binded to a user
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/user/graphs", method = RequestMethod.GET)
-	public List<String> getUserGraphs()  {
+	public List<String> getUserGraphs() {
 
 		// get user graphs
 		List<String> graphs = WasotaAPI.getGraphUserService()
@@ -47,9 +80,14 @@ public class UserController {
 
 		return graphs;
 	}
-	
-	@RequestMapping(value = "/user/performance", method = RequestMethod.GET) 
-	public List<WasotaPerformanceModel> getAllPerformance()  {
+
+	/**
+	 * Return a list of experiment (grouped by performance) binded to a user
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/user/performance", method = RequestMethod.GET)
+	public List<WasotaPerformanceModel> getAllPerformance() {
 
 		// get user graphs
 		List<WasotaPerformanceModel> graphs = WasotaAPI.getGraphUserService()
@@ -57,13 +95,25 @@ public class UserController {
 
 		return graphs;
 	}
-	
-	@RequestMapping(value = "/user/changeExperiment", method = RequestMethod.POST) 
-	public void changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound  {
+
+	/**
+	 * Change an experiment to public or private
+	 * 
+	 * @param body
+	 *            - should be a PUT with a JSON body containing a
+	 *            'experimentURI' key. Example: '{"experimentURI":
+	 *            "http://mex.aksw.org/examples/exp_cf_1_2025644708_exe_2_mea_3"
+	 *            }'
+	 * @throws UserNotAllowed
+	 * @throws ParameterNotFound
+	 */
+	@RequestMapping(value = "/user/changeExperiment", method = RequestMethod.PUT)
+	public void changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound {
 
 		String experimentURI = JSONUtils.getField(body.toString(), "experimentURI");
 
-		WasotaAPI.getExperimentService().changeExperimentState(experimentURI, WasotaAPI.getAuthService().getAuthenticatedUser());
+		WasotaAPI.getExperimentService().changeExperimentState(experimentURI,
+				WasotaAPI.getAuthService().getAuthenticatedUser());
 
 	}
 

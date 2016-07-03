@@ -20,7 +20,7 @@ import wasota.utils.JSONUtils;
  * 
  * @author Ciro Baron Neto
  * 
- * Jul 3, 2016
+ *         Jul 3, 2016
  */
 @RestController
 public class GraphController {
@@ -29,35 +29,42 @@ public class GraphController {
 
 	/**
 	 * Add new public graph in Wasota
-	 * @param body - should be a PUT with a JSON body containing a 'format', 'graphName' and 'graph' key. 
+	 * 
+	 * @param body
+	 *            - should be a PUT with a JSON body containing a 'format',
+	 *            'graphName' and 'graph' key. Example: '{"format":"ttl",
+	 *            "graph":". . . (your RDF here) . . .", "graphName":
+	 *            "myNamedGraph"}'
 	 * @throws NotPossibleToSaveGraph
-	 * @throws ParameterNotFound 
+	 * @throws ParameterNotFound
 	 */
 	@RequestMapping(value = "/graph", method = RequestMethod.PUT)
 	public void addGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
 
 		// get all parameters from POST request
 		String format = JSONUtils.getField(body.toString(), "format");
-		String namedGraph = JSONUtils.getField(body.toString(), "graphName");
+		String graphName = JSONUtils.getField(body.toString(), "graphName");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
-		WasotaAPI.getGraphService().createGraph(graph, namedGraph, format);
+		WasotaAPI.getGraphService().createGraph(graph, graphName, format);
 
 	}
 
 	/**
 	 * Return a public graph stored in Wasota
-	 * @param namedGraph - name or identifier of the graph
+	 * 
+	 * @param graphName
+	 *            - name or identifier of the graph
 	 * @return
 	 * @throws NotPossibleToLoadGraph
 	 */
 	@RequestMapping(value = "/graph", method = RequestMethod.GET)
-	public String getGraph(@RequestParam(value = "namedGraph", required = true) String namedGraph)
+	public String getGraph(@RequestParam(value = "graphName", required = true) String graphName)
 			throws NotPossibleToLoadGraph {
 
 		StringWriter out = new StringWriter();
 
-		WasotaAPI.getGraphService().loadGraph(namedGraph).writeAsString(out);
+		WasotaAPI.getGraphService().loadGraph(graphName).writeAsString(out);
 
 		return out.toString();
 	}
