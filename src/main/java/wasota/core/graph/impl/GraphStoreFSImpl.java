@@ -37,7 +37,7 @@ public class GraphStoreFSImpl implements GraphStoreInterface {
 			throws NotPossibleToLoadGraph {
 
 		// get file
-		String path = WasotaProperties.BASE_PATH + "/" + FileUtils.stringToHash(namedGraph);
+		String path = WasotaProperties.GRAPH_PATH + "/" + FileUtils.stringToHash(namedGraph);
 
 		File file = new File(path);
 
@@ -63,7 +63,7 @@ public class GraphStoreFSImpl implements GraphStoreInterface {
 			String hash = FileUtils.stringToHash(namedGraph);
 
 			// save dataset sending an outputstream from the FS
-			FileOutputStream fos = new FileOutputStream(new File(WasotaProperties.BASE_PATH + "/" + hash));
+			FileOutputStream fos = new FileOutputStream(new File(WasotaProperties.GRAPH_PATH + "/" + hash));
 
 			graph.writeAsStream(fos);
 

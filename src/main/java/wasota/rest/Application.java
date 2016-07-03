@@ -1,5 +1,7 @@
 package wasota.rest;
 
+import java.io.File;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,16 +37,24 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		new WasotaProperties().loadProperties();		
-		
+		new WasotaProperties().loadProperties();
+
 		SpringApplication.run(Application.class, args);
-		
+
+		// make local folders
+		File file = new File(WasotaProperties.GRAPH_PATH);
+		if (!file.exists())
+			file.mkdirs();
+		file = new File(WasotaProperties.INDEX_PATH);
+		if (!file.exists())
+			file.mkdirs();
+
 		// set API implementations
 		WasotaAPI.setAuthServiceImplementation(new UserAuthenticationMongoImpl());
 		WasotaAPI.setExperimentImplementation(new ExperimentServicesImpl());
 		WasotaAPI.setGraphServiceImplementation(new GraphServiceImpl());
 		WasotaAPI.setGraphStoreImplementation(new GraphStoreFSImpl());
-		WasotaAPI.setWasotaGraphImplementation(new WasotaGraphJenaImpl()); 
+		WasotaAPI.setWasotaGraphImplementation(new WasotaGraphJenaImpl());
 		WasotaAPI.setGraphUserService(new GraphUserServiceImpl());
 
 	}
@@ -85,10 +95,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(
-				"/graph", "/user/add", "/context", "/performance", "/performance/get"
-				).permitAll().anyRequest().authenticated()
-		.and().httpBasic().and().csrf().disable();
+		http.authorizeRequests().antMatchers("/graph", "/user/add", "/context", "/performance", "/performance/get")
+				.permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
 	}
 
 }
