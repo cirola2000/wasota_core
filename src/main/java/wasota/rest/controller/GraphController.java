@@ -14,6 +14,9 @@ import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
 import wasota.core.graph.impl.GraphServiceImpl;
+import wasota.rest.messages.RestMsg;
+import wasota.rest.messages.WasotaRestModel;
+import wasota.rest.messages.WasotaRestModel;
 import wasota.utils.JSONUtils;
 
 /**
@@ -39,14 +42,21 @@ public class GraphController {
 	 * @throws ParameterNotFound
 	 */
 	@RequestMapping(value = "/graph", method = RequestMethod.PUT)
-	public void addGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
+	public WasotaRestModel addGraph(@RequestBody String body) throws ParameterNotFound, NotPossibleToSaveGraph {
 
-		// get all parameters from POST request
-		String format = JSONUtils.getField(body.toString(), "format");
+		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+
+		// get all parameters from PUT request
+
+		String format;
+
+		format = JSONUtils.getField(body.toString(), "format");
 		String graphName = JSONUtils.getField(body.toString(), "graphName");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
 		WasotaAPI.getGraphService().createGraph(graph, graphName, format);
+
+		return restMsg;
 
 	}
 

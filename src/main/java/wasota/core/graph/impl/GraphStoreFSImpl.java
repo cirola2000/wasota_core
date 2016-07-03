@@ -23,13 +23,12 @@ import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
 import wasota.core.graph.GraphStoreInterface;
 import wasota.core.graph.WasotaGraphInterface;
 import wasota.properties.WasotaProperties;
-import wasota.rest.controller.GraphController;
 import wasota.utils.FileUtils;
 
 public class GraphStoreFSImpl implements GraphStoreInterface {
 
 	final static Logger logger = Logger.getLogger(GraphStoreInterface.class);
-
+ 
 	private HashMap<String, String> hashAndGraphNameMap = new HashMap<String, String>();
 
 	@Override

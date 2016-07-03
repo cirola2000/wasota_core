@@ -13,6 +13,8 @@ import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.UserNotAllowed;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
 import wasota.core.models.WasotaPerformanceModel;
+import wasota.rest.messages.RestMsg;
+import wasota.rest.messages.WasotaRestModel;
 import wasota.utils.JSONUtils;
 
 /**
@@ -35,11 +37,13 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/user/add", method = RequestMethod.PUT)
-	public void addUser(@RequestBody String body) throws Exception {
+	public WasotaRestModel addUser(@RequestBody String body) throws Exception {
+		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
 
 		WasotaAPI.getAuthService().addUser(new JSONObject(body).get("user").toString(),
 				new JSONObject(body).get("email").toString(), new JSONObject(body).get("password").toString());
 
+		return restMsg;
 	}
 
 	/**
@@ -54,8 +58,10 @@ public class UserController {
 	 * @throws ParameterNotFound
 	 */
 	@RequestMapping(value = "/user/graph/add", method = RequestMethod.PUT)
-	public void addUserGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
+	public WasotaRestModel addUserGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
 
+		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+		
 		// get all parameters from POST request
 		String format = JSONUtils.getField(body.toString(), "format");
 		String graphName = JSONUtils.getField(body.toString(), "graphName");
@@ -64,6 +70,8 @@ public class UserController {
 		// case there is, link the graph and experiments with the user
 		WasotaAPI.getGraphService().createGraphWithUser(graph, graphName,
 				WasotaAPI.getAuthService().getAuthenticatedUser().getUser(), format);
+		
+		return restMsg;
 	}
 
 	/**
@@ -108,12 +116,14 @@ public class UserController {
 	 * @throws ParameterNotFound
 	 */
 	@RequestMapping(value = "/user/changeExperiment", method = RequestMethod.PUT)
-	public void changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound {
-
+	public WasotaRestModel  changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound {
+		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
 		String experimentURI = JSONUtils.getField(body.toString(), "experimentURI");
 
 		WasotaAPI.getExperimentService().changeExperimentState(experimentURI,
 				WasotaAPI.getAuthService().getAuthenticatedUser());
+		
+		return restMsg;
 
 	}
 
