@@ -39,8 +39,9 @@ public class WasotaProperties {
 		}
 	}
 
-	final public static String GRAPH_PATH = "./graphs/";
-	final public static String INDEX_PATH = "./index/";
+	final public static String GRAPH_FOLDER_PATH = "./graphs/";
+	final public static String INDEX_FOLDER_PATH = "./index/index";
+	final public static String INDEX_PATH = INDEX_FOLDER_PATH + "/index";
 //	final public static String MEX_CORE_DOWNLOAD = "http://localhost:3010/files/mexcore.ttl";
 	final public static String MEX_CORE_DOWNLOAD = "http://mex.aksw.org/mex-core";
 //	final public static String MEX_PERF_DOWNLOAD = "http://localhost:3010/files/mexperf.ttl";

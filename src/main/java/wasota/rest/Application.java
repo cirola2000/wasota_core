@@ -42,10 +42,10 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 
 		// make local folders
-		File file = new File(WasotaProperties.GRAPH_PATH);
+		File file = new File(WasotaProperties.GRAPH_FOLDER_PATH);
 		if (!file.exists())
 			file.mkdirs();
-		file = new File(WasotaProperties.INDEX_PATH);
+		file = new File(WasotaProperties.INDEX_FOLDER_PATH);
 		if (!file.exists())
 			file.mkdirs();
 
