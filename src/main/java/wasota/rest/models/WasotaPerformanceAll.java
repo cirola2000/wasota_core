@@ -1,8 +1,8 @@
 package wasota.rest.models;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import wasota.core.graph.WasotaGraphInterface;
 
@@ -13,7 +13,7 @@ public class WasotaPerformanceAll {
 		performanceByContext(context, wasotaGraph);
 	}
 
-	public List<String> performanceList = new ArrayList<String>();
+	public Set<String> performanceList = new HashSet<String>();
 
 	public void performanceByContext(String context, WasotaGraphInterface wasotaGraph) {
 
@@ -32,7 +32,7 @@ public class WasotaPerformanceAll {
 		List<String> measureClassification = wasotaGraph.queries().getMeasureList(executionList);
 
 		// get all performance types
-		performanceList = wasotaGraph.queries().getAllPerformanceTypes(measureClassification); 
+		performanceList = new HashSet<String>(wasotaGraph.queries().getAllPerformanceTypes(measureClassification)); 
 
 	}
 
