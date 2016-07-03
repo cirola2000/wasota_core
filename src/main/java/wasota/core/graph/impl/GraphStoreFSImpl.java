@@ -42,7 +42,7 @@ public class GraphStoreFSImpl implements GraphStoreInterface {
 		File file = new File(path);
 
 		if (file.exists()) {
-			try {
+			try { 
 				graph.readAsStream(new FileInputStream(file), format);
 				logger.info("Graph '" + namedGraph + "' loaded from store.");
 			} catch (FileNotFoundException e) {
