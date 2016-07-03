@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import wasota.graph.WasotaPerformanceModel;
-import wasota.services.currentservices.CurrentExperimentService;
-import wasota.services.graph.WasotaGraphInterface;
+import wasota.core.WasotaAPI;
+import wasota.core.graph.WasotaGraphInterface;
+import wasota.core.models.WasotaPerformanceModel;
 
 public class WasotaPerformance {
 
@@ -23,31 +23,31 @@ public class WasotaPerformance {
 		// pipeline to get all measures
 
 		// get all application for the context
-		List<String> appList = wasotaGraph.query().getAlgorithmList(context);
+		List<String> appList = wasotaGraph.queries().getAlgorithmList(context);
  
 		// get list of experiment
-		List<String> expList = wasotaGraph.query().getExperimentList(appList);
+		List<String> expList = wasotaGraph.queries().getExperimentList(appList);
 
 		// get list of experiment config
-		List<String> expListConfig = wasotaGraph.query().getExperimentConfigList(expList);
+		List<String> expListConfig = wasotaGraph.queries().getExperimentConfigList(expList);
 
 		// get list of execution
-		List<String> executionList = wasotaGraph.query().getExecutionList(expListConfig);
+		List<String> executionList = wasotaGraph.queries().getExecutionList(expListConfig);
 
 		// get list measure classification
-		List<String> measureClassification = wasotaGraph.query().getMeasureList(executionList);
+		List<String> measureClassification = wasotaGraph.queries().getMeasureList(executionList);
 		
 		List<String> performanceTypeList = new ArrayList<String>();
 		performanceTypeList.add(performanceType);
 
 		// get all performance types
-		performanceList = wasotaGraph.query()
+		performanceList = wasotaGraph.queries()
 				.getFinalPerformanceList(measureClassification, performanceTypeList);
 		
 		
 		
 		for(WasotaPerformanceModel performance : performanceList){
-			if(CurrentExperimentService.getGraphStore().isPublic(performance.url)){
+			if(WasotaAPI.getExperimentService().isPublic(performance.url)){
 				performanceListFinal.add(performance);
 			}
 		}

@@ -3,45 +3,61 @@ package wasota.rest.controller;
 import java.io.StringWriter;
 
 import org.apache.log4j.Logger;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import wasota.exceptions.graph.NotPossibleToLoadGraph;
-import wasota.exceptions.graph.NotPossibleToSaveGraph;
-import wasota.services.currentservices.CurrentGraphService;
-import wasota.services.graph.impl.GraphServiceImpl;
+import wasota.core.WasotaAPI;
+import wasota.core.exceptions.ParameterNotFound;
+import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
+import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
+import wasota.core.graph.impl.GraphServiceImpl;
 import wasota.utils.JSONUtils;
 
+/**
+ * 
+ * @author Ciro Baron Neto
+ * 
+ * Jul 3, 2016
+ */
 @RestController
 public class GraphController {
 
 	final static Logger logger = Logger.getLogger(GraphController.class);
 
+	/**
+	 * Add new public graph in Wasota
+	 * @param body - should be a PUT with a JSON body containing a 'format', 'graphName' and 'graph' key. 
+	 * @throws NotPossibleToSaveGraph
+	 * @throws ParameterNotFound 
+	 */
 	@RequestMapping(value = "/graph", method = RequestMethod.PUT)
-	public void addGraph(@RequestBody String body) throws NotPossibleToSaveGraph {
+	public void addGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
 
 		// get all parameters from POST request
 		String format = JSONUtils.getField(body.toString(), "format");
-		String namedGraph = JSONUtils.getField(body.toString(), "namedGraph");
+		String namedGraph = JSONUtils.getField(body.toString(), "graphName");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
-		CurrentGraphService.getGraphService().createGraph(graph, namedGraph, format);
+		WasotaAPI.getGraphService().createGraph(graph, namedGraph, format);
 
 	}
 
+	/**
+	 * Return a public graph stored in Wasota
+	 * @param namedGraph - name or identifier of the graph
+	 * @return
+	 * @throws NotPossibleToLoadGraph
+	 */
 	@RequestMapping(value = "/graph", method = RequestMethod.GET)
 	public String getGraph(@RequestParam(value = "namedGraph", required = true) String namedGraph)
 			throws NotPossibleToLoadGraph {
 
 		StringWriter out = new StringWriter();
 
-		GraphServiceImpl s = new GraphServiceImpl();
-		s.loadGraph(namedGraph).writeAsString(out);
+		WasotaAPI.getGraphService().loadGraph(namedGraph).writeAsString(out);
 
 		return out.toString();
 	}

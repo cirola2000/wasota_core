@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import wasota.services.graph.WasotaGraphInterface;
+import wasota.core.graph.WasotaGraphInterface;
 
 public class WasotaPerformanceAll {
 
@@ -13,27 +13,26 @@ public class WasotaPerformanceAll {
 		performanceByContext(context, wasotaGraph);
 	}
 
-	public List<String> precisionListFinal = new ArrayList<String>();
+	public List<String> performanceList = new ArrayList<String>();
 
 	public void performanceByContext(String context, WasotaGraphInterface wasotaGraph) {
 
-		List<String> appList = wasotaGraph.query().getAlgorithmList(context);
+		List<String> appList = wasotaGraph.queries().getAlgorithmList(context);
 
 		// get list of experiment
-		List<String> expList = wasotaGraph.query().getExperimentList(appList);
+		List<String> expList = wasotaGraph.queries().getExperimentList(appList);
 
 		// get list of experiment config
-		List<String> expListConfig = wasotaGraph.query().getExperimentConfigList(expList);
+		List<String> expListConfig = wasotaGraph.queries().getExperimentConfigList(expList);
 
 		// get list of execution
-		List<String> executionList = wasotaGraph.query().getExecutionList(expListConfig);
+		List<String> executionList = wasotaGraph.queries().getExecutionList(expListConfig);
 
 		// get list measure classification
-		List<String> measureClassification = wasotaGraph.query().getMeasureList(executionList);
+		List<String> measureClassification = wasotaGraph.queries().getMeasureList(executionList);
 
 		// get all performance types
-		precisionListFinal = wasotaGraph.query().getAllPerformanceTypes(measureClassification); 
-
+		performanceList = wasotaGraph.queries().getAllPerformanceTypes(measureClassification); 
 
 	}
 

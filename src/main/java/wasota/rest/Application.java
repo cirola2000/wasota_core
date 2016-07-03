@@ -17,9 +17,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import wasota.core.WasotaAPI;
+import wasota.core.authentication.UserAuth;
+import wasota.core.authentication.impl.UserAuthenticationMongoImpl;
+import wasota.core.experiments.impl.ExperimentServicesImpl;
+import wasota.core.graph.impl.GraphServiceImpl;
+import wasota.core.graph.impl.GraphStoreFSImpl;
+import wasota.core.graph.impl.GraphUserServiceImpl;
+import wasota.core.graph.impl.WasotaGraphJenaImpl;
 import wasota.properties.WasotaProperties;
-import wasota.services.authentication.UserAuth;
-import wasota.services.currentservices.CurrentAuthenticationService;
 
 @Configuration
 @ComponentScan
@@ -27,14 +33,19 @@ import wasota.services.currentservices.CurrentAuthenticationService;
 @SpringBootApplication
 public class Application {
 
-	public Application() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static void main(String[] args) {
 
-		new WasotaProperties().loadProperties();
+		new WasotaProperties().loadProperties();		
+		
 		SpringApplication.run(Application.class, args);
+		
+		// set API implementations
+		WasotaAPI.setAuthServiceImplementation(new UserAuthenticationMongoImpl());
+		WasotaAPI.setExperimentImplementation(new ExperimentServicesImpl());
+		WasotaAPI.setGraphServiceImplementation(new GraphServiceImpl());
+		WasotaAPI.setGraphStoreImplementation(new GraphStoreFSImpl());
+		WasotaAPI.setWasotaGraphImplementation(new WasotaGraphJenaImpl()); 
+		WasotaAPI.setGraphUserService(new GraphUserServiceImpl());
 
 	}
 }
@@ -55,10 +66,10 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-				UserAuth user = CurrentAuthenticationService.authService.loadUser(username);
+				UserAuth user = WasotaAPI.getAuthService().loadUser(username);
 
 				if (user != null)
-					return new User(user.getUser(), user.getPass(), true, true, true, true,
+					return new User(user.getUser(), user.getPassword(), true, true, true, true,
 							AuthorityUtils.createAuthorityList("USER"));
 				else
 					throw new UsernameNotFoundException("Could not find the user '" + username + "'");

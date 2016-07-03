@@ -4,21 +4,28 @@ import wasota.mongo.MongoSuperClass;
 
 public class UserGraph extends MongoSuperClass {
 
-	private static final String GRAPH_NAME = "graph";
+	public static final String GRAPH_NAME = "graph";
 
-	private static final String FILE = "file";
+	public static final String FILE = "file";
 
-	private static final String USER = "user";
+	public static final String USER = "user";
 
-	private static final String VISIBLE = "visible";
+	public static final String VISIBLE = "visible";
 
-	private static final String COLLECTION = "userGraph";
+	public static final String COLLECTION = "userGraph";
 
 	public UserGraph(String graph, String file, String user) {
 		super(COLLECTION);
 		setFile(file);
 		setUser(user);
 		setGraphName(graph);
+		addKey(GRAPH_NAME);
+	}
+	
+	public UserGraph(String user) {
+		super(COLLECTION);
+		setUser(user);
+		search();
 		addKey(GRAPH_NAME);
 	}
 

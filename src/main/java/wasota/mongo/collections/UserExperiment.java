@@ -23,6 +23,7 @@ public class UserExperiment extends MongoSuperClass {
 		super(COLLECTION);
 		addKey(EXPERIMENT);
 		setExperiment(experiment);
+		find(true);
 	}
 
 
