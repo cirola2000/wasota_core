@@ -1,5 +1,6 @@
 package wasota.rest.controller;
 
+import java.io.IOException;
 import java.io.StringWriter;
 
 import org.apache.log4j.Logger;
@@ -8,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import wasota.core.WasotaAPI;
 import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
-import wasota.core.graph.impl.GraphServiceImpl;
 import wasota.rest.messages.RestMsg;
 import wasota.rest.messages.WasotaRestModel;
-import wasota.rest.messages.WasotaRestModel;
+import wasota.utils.FileUtils;
 import wasota.utils.JSONUtils;
 
 /**
@@ -55,6 +56,34 @@ public class GraphController {
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
 		WasotaAPI.getGraphService().createGraph(graph, graphName, format);
+
+		return restMsg;
+
+	}
+
+	/**
+	 * Add new public graph in Wasota via MultiPart
+	 * 
+	 * @param graph - file multipart with the RDF data
+	 * @param graphName - name of the graph
+	 * @param format - RDF format
+	 * @return
+	 * @throws ParameterNotFound
+	 * @throws NotPossibleToSaveGraph
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/graphFile", method = RequestMethod.POST)
+	public WasotaRestModel addGraphFile(
+			@RequestParam("graph") MultipartFile graph,
+			@RequestParam(value = "graphName", required = true) String graphName,
+			@RequestParam(value = "format", required = true) String format)
+					throws ParameterNotFound, NotPossibleToSaveGraph, IOException {
+		
+		System.out.println(graph.toString());
+
+		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+
+		WasotaAPI.getGraphService().createGraph(FileUtils.convertStreamToString(graph.getInputStream()), graphName, format);
 
 		return restMsg;
 

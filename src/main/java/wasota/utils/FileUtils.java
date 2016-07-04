@@ -40,6 +40,11 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	public static String convertStreamToString(java.io.InputStream is) {
+	    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+	    return s.hasNext() ? s.next() : "";
+	}
 
 	public static String getASCIIFormat(String str) {
 		return str.replaceAll("[^A-Za-z0-9]", "");

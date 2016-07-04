@@ -95,7 +95,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/graph", "/user/add", "/context", "/performance", "/performance/get")
+		http.authorizeRequests().antMatchers("/graph","/graphFile", "/user/add", "/context", "/performance", "/performance/get")
 				.permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
 	}
 

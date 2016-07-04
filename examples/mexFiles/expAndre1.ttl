@@ -1,0 +1,104 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix this:  <http://mex.aksw.org/examples/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix mexcore: <http://mex.aksw.org/mex-core#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix mexperf: <http://mex.aksw.org/mex-perf#> .
+@prefix mexalgo: <http://mex.aksw.org/mex-algo#> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+this:exp_cf_1_-708953780_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                oOverall Execution: C1_MEX_EXEC_D2o ;
+        mexcore:endsAtPosition    osection 18o ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  osection 0o ;
+        mexcore:targetClass       oUnknown wordso ;
+        prov:generated            this:exp_cf_1_-708953780_exe_2_mea_1 ;
+        prov:id                   oC1_MEX_EXEC_D2o ;
+        prov:used                 this:exp_cf_1_-708953780_exe_2_algo , this:exp_cf_1_-708953780_exe_2_phase ;
+        prov:wasInformedBy        this:exp_cf_1_-708953780 .
+
+this:exp_cf_1_-708953780_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        oDataset WSJo ;
+        dct:description   oWall Street Journal (WSJ) release 3 (LDC99T42)o ;
+        dct:title         oWSJo ;
+        dcat:landingPage  ohttps://catalog.ldc.upenn.edu/LDC99T42o .
+
+this:exp_cf_1_-708953780_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  oTesto .
+
+this:exp_cf_1_-708953780_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           oClassification measureso ;
+        mexperf:accuracy     o0.9646o^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-708953780_exe_1 .
+
+this:exp_cf_1_-708953780
+        a                  mexcore:ExperimentConfiguration ;
+        rdfs:label         oConfiguration for a set of Executionso ;
+        dct:identifier     oMEX_EXP_CONF_D1o ;
+        prov:used          this:exp_cf_1_-708953780_ds , this:exp_cf_1_-708953780_tol ;
+        prov:wasStartedBy  this:exp_-708953780 .
+
+this:exp_cf_1_-708953780_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           oClassification measureso ;
+        mexperf:accuracy     o0.8586o^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-708953780_exe_2 .
+
+this:exp_cf_1_-708953780_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  oTesto .
+
+this:version  dct:hasVersion  o1.0.2o .
+
+this:exp_cf_1_-708953780_tol
+        a           mexalgo:TnT ;
+        rdfs:label  oTnTo .
+
+this:exp_cf_1_-708953780_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        oalgorithm1o ;
+        dct:identifier    otnto ;
+        dcat:landingPage  ohttp://www.coli.uni-saarland.de/~thorsten/tnt/o .
+
+this:exp_cf_1_-708953780_exe_1
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                oOverall Execution: C1_MEX_EXEC_D1o ;
+        mexcore:endsAtPosition    osection 18o ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  osection 0o ;
+        mexcore:targetClass       oAll tokenso ;
+        prov:generated            this:exp_cf_1_-708953780_exe_1_mea_1 ;
+        prov:id                   oC1_MEX_EXEC_D1o ;
+        prov:used                 this:exp_cf_1_-708953780_exe_1_phase , this:exp_cf_1_-708953780_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-708953780 .
+
+this:ctx_-708953780  a        mexcore:PosTagging ;
+        rdfs:label            oPos Taggingo ;
+        prov:wasAttributedTo  this:app_-708953780 .
+
+this:org_-708953780  a  prov:Organization ;
+        foaf:givenName  oUniversitat des Saarlandeso .
+
+this:app_-708953780  a        mexcore:ApplicationContext ;
+        rdfs:label            oBasic Experiment Infomationo ;
+        dct:dateCopyrighted   o2016.07.03 12:40:42 GMT+01:00o ;
+        prov:actedOnBehalfOf  this:org_-708953780 ;
+        foaf:givenName        oBrantso ;
+        foaf:mbox             oemailexample@aclweb.orgo .
+
+this:exp_-708953780  a          mexcore:Experiment ;
+        rdfs:label              oExperiment: MEX_EXPERIMENTo ;
+        mexcore:experimentHash  o-708953780o ;
+        dct:identifier          oMEX_EXPERIMENTo ;
+        dct:title               oACL POS Tagging - TnTo ;
+        prov:wasAttributedTo    this:app_-708953780 .
