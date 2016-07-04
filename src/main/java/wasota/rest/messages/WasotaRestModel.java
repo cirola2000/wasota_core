@@ -1,5 +1,7 @@
 package wasota.rest.messages;
 
+import org.json.JSONObject;
+
 /**
  * @author Ciro Baron Neto
  * 
@@ -9,14 +11,14 @@ public class WasotaRestModel {
 	
 	public String status;
 
-	public String content;
+	public String data;
 
 	/**
 	 * Constructor for Class WasotaRestMsg 
 	 */
-	public WasotaRestModel(String status, String content) {
+	public WasotaRestModel(String status, String data) {
 		this.status = status;
-		this.content = content;
+		this.data = data;
 	}
 
 	

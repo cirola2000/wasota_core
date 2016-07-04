@@ -8,7 +8,7 @@ package wasota.rest.messages;
  * 
  * Jul 4, 2016
  */
-public class RestMsg {
+public class WasotaRestMsg {
 	
 	final public static String OK = "ok";
 

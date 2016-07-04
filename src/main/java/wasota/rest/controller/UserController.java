@@ -13,7 +13,7 @@ import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.UserNotAllowed;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
 import wasota.core.models.WasotaPerformanceModel;
-import wasota.rest.messages.RestMsg;
+import wasota.rest.messages.WasotaRestMsg;
 import wasota.rest.messages.WasotaRestModel;
 import wasota.utils.JSONUtils;
 
@@ -38,7 +38,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/add", method = RequestMethod.PUT)
 	public WasotaRestModel addUser(@RequestBody String body) throws Exception {
-		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 
 		WasotaAPI.getAuthService().addUser(new JSONObject(body).get("user").toString(),
 				new JSONObject(body).get("email").toString(), new JSONObject(body).get("password").toString());
@@ -60,7 +60,7 @@ public class UserController {
 	@RequestMapping(value = "/user/graph/add", method = RequestMethod.PUT)
 	public WasotaRestModel addUserGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
 
-		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 		
 		// get all parameters from POST request
 		String format = JSONUtils.getField(body.toString(), "format");
@@ -117,7 +117,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/changeExperiment", method = RequestMethod.PUT)
 	public WasotaRestModel  changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound {
-		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 		String experimentURI = JSONUtils.getField(body.toString(), "experimentURI");
 
 		WasotaAPI.getExperimentService().changeExperimentState(experimentURI,

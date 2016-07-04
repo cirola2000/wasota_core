@@ -26,5 +26,11 @@ public interface ExperimentsServiceInterface {
 	 */
 	public Boolean changeExperimentState(String experimentURI, UserAuth user)  throws UserNotAllowed ;
 	
+	/**
+	 * Return the number of experiments
+	 * @return - number of experiments
+	 */
+	public int numberOfExperiments();
+	
 	
 }

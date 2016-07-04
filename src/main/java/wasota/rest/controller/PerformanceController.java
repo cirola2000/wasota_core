@@ -1,6 +1,5 @@
 package wasota.rest.controller;
 
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,6 +60,6 @@ public class PerformanceController {
 		WasotaPerformance performance = new WasotaPerformance(context, precision, WasotaAPI.getWasotaGraph());
 
 		return performance;
-	}
+	}	
 
 }

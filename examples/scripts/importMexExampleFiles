@@ -8,6 +8,6 @@ do
     -F graphName=$file \
     -F format=ttl \
     -F graph=@../mexFiles/$file \
-    http://localhost:8090/graphFile
+    http://wasota.aksw.org/api/graphFile
 
 done

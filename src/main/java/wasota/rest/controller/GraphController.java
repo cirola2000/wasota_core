@@ -15,7 +15,7 @@ import wasota.core.WasotaAPI;
 import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
-import wasota.rest.messages.RestMsg;
+import wasota.rest.messages.WasotaRestMsg;
 import wasota.rest.messages.WasotaRestModel;
 import wasota.utils.FileUtils;
 import wasota.utils.JSONUtils;
@@ -45,7 +45,7 @@ public class GraphController {
 	@RequestMapping(value = "/graph", method = RequestMethod.PUT)
 	public WasotaRestModel addGraph(@RequestBody String body) throws ParameterNotFound, NotPossibleToSaveGraph {
 
-		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 
 		// get all parameters from PUT request
 
@@ -81,7 +81,7 @@ public class GraphController {
 		
 		System.out.println(graph.toString());
 
-		WasotaRestModel restMsg = new WasotaRestModel(RestMsg.OK, "");
+		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 
 		WasotaAPI.getGraphService().createGraph(FileUtils.convertStreamToString(graph.getInputStream()), graphName, format);
 

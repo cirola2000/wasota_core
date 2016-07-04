@@ -1,11 +1,16 @@
 package wasota.core.experiments.impl;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 
 import wasota.core.WasotaAPI;
 import wasota.core.authentication.UserAuth;
 import wasota.core.exceptions.UserNotAllowed;
 import wasota.core.experiments.ExperimentsServiceInterface;
+import wasota.core.models.WasotaPerformanceModel;
 import wasota.mongo.collections.UserExperiment;
 import wasota.mongo.exceptions.MissingPropertiesException;
 import wasota.mongo.exceptions.NoPKFoundException;
@@ -65,6 +70,22 @@ public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 			throw new UserNotAllowed("Failed! User: " + user.getUser() + " is not the experiment owner.");
 
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see wasota.core.experiments.ExperimentsServiceInterface#numberOfExperiments()
+	 */
+	@Override
+	public int numberOfExperiments() {
+		
+		List<WasotaPerformanceModel> performanceList = WasotaAPI.getWasotaGraph().queries().getAllFinalPerformanceList();
+		Set<String> experimentURLs = new HashSet<>();
+		
+		for(WasotaPerformanceModel model: performanceList){
+			experimentURLs.add(model.url);
+		}
+		
+		return experimentURLs.size();
 	}
 
 }
