@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -X PUT -d "{'user':'ciro', 'password': 'password', 'email':'myemail@gmail.com'}" http://wasota.aksw.org/api/user/add
