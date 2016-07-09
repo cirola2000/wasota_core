@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_-1519604984_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_-1519604984_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_-1519604984_exe_2_phase , this:exp_cf_1_-1519604984_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_-1519604984 .
+this:exp_cf_1_-1519775922_tool
+        a           <http://mex.aksw.org/mex-algo#Yih (2013) - LCLR> ;
+        rdfs:label  "Yih (2013) - LCLR" .
 
-this:exp_cf_1_-1519604984_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
+this:exp_cf_1_-1519775922_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset Yih (2013) - LCLR" ;
+        dct:description   "Yih et al. (2013)" ;
+        dct:title         "Yih (2013) - LCLR" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Question_Answering_(State_of_the_art)" .
 
-this:org_-1519604984  a  prov:Organization ;
-        foaf:givenName  "Stanford University " .
-
-this:exp_cf_1_-1519604984
-        a                  mexcore:ExperimentConfiguration ;
-        rdfs:label         "Configuration for a set of Executions" ;
-        dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_-1519604984_ds , this:exp_cf_1_-1519604984_tool ;
-        prov:wasStartedBy  this:exp_-1519604984 .
+this:exp_-1519775922  a         mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "-1519775922" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "Question Answering (State of the art)" ;
+        prov:wasAttributedTo    this:app_-1519775922 .
 
 this:version  dct:hasVersion  "1.0.2" .
 
-this:exp_cf_1_-1519604984_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.603"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_-1519604984_exe_1 .
-
-this:ctx_-1519604984  a       mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_-1519604984 .
-
-this:exp_-1519604984  a         mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "-1519604984" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "Question Answering (State of the art)" ;
-        prov:wasAttributedTo    this:app_-1519604984 .
-
-this:exp_cf_1_-1519604984_exe_1
+this:exp_cf_1_-1519775922_exe_1
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_-1519604984_exe_1_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-1519775922_exe_1_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_-1519604984_exe_1_phase , this:exp_cf_1_-1519604984_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_-1519604984 .
+        prov:used                 this:exp_cf_1_-1519775922_exe_2_algo , this:exp_cf_1_-1519775922_exe_1_phase ;
+        prov:wasInformedBy        this:exp_cf_1_-1519775922 .
 
-this:exp_cf_1_-1519604984_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm70" ;
-        dct:identifier    "Wang (2007)" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Question_Answering_(State_of_the_art)" .
+this:ctx_-1519775922  a       mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_-1519775922 .
 
-this:exp_cf_1_-1519604984_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.685"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_-1519604984_exe_2 .
-
-this:exp_cf_1_-1519604984_exe_1_phase
+this:exp_cf_1_-1519775922_exe_1_phase
         a           mexcore:Test ;
         rdfs:label  "Test" .
 
-this:app_-1519604984  a       mexcore:ApplicationContext ;
+this:exp_cf_1_-1519775922_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.709"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-1519775922_exe_1 .
+
+this:org_-1519775922  a  prov:Organization ;
+        foaf:givenName  "Stanford University " .
+
+this:exp_cf_1_-1519775922_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.77"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-1519775922_exe_2 .
+
+this:exp_cf_1_-1519775922_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_-1519775922
+        a                  mexcore:ExperimentConfiguration ;
+        rdfs:label         "Configuration for a set of Executions" ;
+        dct:identifier     "MEX_EXP_CONF_D1" ;
+        prov:used          this:exp_cf_1_-1519775922_ds , this:exp_cf_1_-1519775922_tool ;
+        prov:wasStartedBy  this:exp_-1519775922 .
+
+this:exp_cf_1_-1519775922_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-1519775922_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_-1519775922_exe_2_algo , this:exp_cf_1_-1519775922_exe_2_phase ;
+        prov:wasInformedBy        this:exp_cf_1_-1519775922 .
+
+this:exp_cf_1_-1519775922_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm76" ;
+        dct:identifier    "Yih (2013) - LCLR" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Question_Answering_(State_of_the_art)" .
+
+this:app_-1519775922  a       mexcore:ApplicationContext ;
         rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_-1519604984 ;
+        dct:dateCopyrighted   "2016.07.08 14:13:09 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_-1519775922 ;
         foaf:givenName        "Mengqiu Wang" ;
         foaf:mbox             "mengqiu@cs.stanford.edu" .
-
-this:exp_cf_1_-1519604984_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=Question_Answering_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title= Question  Answering ( State  of  the  art)" .
-
-this:exp_cf_1_-1519604984_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset Wang (2007)" ;
-        dct:description   "Wang et al. (2007)" ;
-        dct:title         "Wang (2007)" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Question_Answering_(State_of_the_art)" .

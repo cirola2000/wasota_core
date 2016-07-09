@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_329912415_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "quot;"quot;quot;"quot;quot;quot;quot;Overall Execution: C1_MEX_EXEC_D2"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexcore:endsAtPosition    "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexcore:targetClass       "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:generated            this:exp_cf_1_329912415_exe_2_mea_1 ;
-        prov:id                   "quot;"quot;quot;"quot;quot;quot;quot;C1_MEX_EXEC_D2"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:used                 this:exp_cf_1_329912415_exe_2_algo , this:exp_cf_1_329912415_exe_2_phase ;
-        prov:wasInformedBy        this:exp_cf_1_329912415 .
-
-this:exp_cf_1_329912415_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=NP_Chunking_(State_of_the_art)> ;
-        rdfs:label  "quot;"quot;quot;"quot;quot;quot;quot;http:/ /aclweb .org /aclwiki /index .php ?title=NP  Chunking ( State  of  the  art)"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:exp_329912415  a           mexcore:Experiment ;
-        rdfs:label              "quot;"quot;quot;"quot;quot;quot;quot;Experiment: MEX_EXPERIMENT"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexcore:experimentHash  "quot;"quot;quot;"quot;quot;quot;quot;329912415"quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:identifier          "quot;"quot;quot;"quot;quot;quot;quot;MEX_EXPERIMENT"quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:title               "quot;"quot;quot;"quot;quot;quot;quot;Noun-Modifier Semantic Relations (State of the art)"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:wasAttributedTo    this:app_329912415 .
-
-this:org_329912415  a   prov:Organization ;
-        foaf:givenName  "quot;"quot;quot;"quot;quot;quot;quot;University of Ottawa"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:version  dct:hasVersion  "quot;"quot;quot;"quot;quot;quot;quot;1.0.2"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:exp_cf_1_329912415
+this:exp_cf_1_-1554764744
         a                  mexcore:ExperimentConfiguration ;
-        rdfs:label         "quot;"quot;quot;"quot;quot;quot;quot;Configuration for a set of Executions"quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:identifier     "quot;"quot;quot;"quot;quot;quot;quot;MEX_EXP_CONF_D1"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:used          this:exp_cf_1_329912415_ds , this:exp_cf_1_329912415_tool ;
-        prov:wasStartedBy  this:exp_329912415 .
+        rdfs:label         "Configuration for a set of Executions" ;
+        dct:identifier     "MEX_EXP_CONF_D1" ;
+        prov:used          this:exp_cf_1_-1554764744_ds , this:exp_cf_1_-1554764744_tool ;
+        prov:wasStartedBy  this:exp_-1554764744 .
 
-this:ctx_329912415  a         mexcore:PosTagging ;
-        rdfs:label            "quot;"quot;quot;"quot;quot;quot;quot;Pos Tagging"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:wasAttributedTo  this:app_329912415 .
-
-this:exp_cf_1_329912415_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "quot;"quot;quot;"quot;quot;quot;quot;algorithm2"quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:identifier    "quot;"quot;quot;"quot;quot;quot;quot;Baseline "quot;"quot;quot;"quot;quot;quot;quot; ;
-        dcat:landingPage  "quot;"quot;quot;"quot;quot;quot;quot;http://www.aclweb.org/aclwiki/index.php?title=Noun-Modifier_Semantic_Relations_(State_of_the_art)"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:exp_cf_1_329912415_exe_1_phase
-        a           mexcore:Test ;
-        rdfs:label  "quot;"quot;quot;"quot;quot;quot;quot;Test"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:exp_cf_1_329912415_exe_1_mea_1
+this:exp_cf_1_-1554764744_exe_2_mea_1
         a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "quot;"quot;quot;"quot;quot;quot;quot;Classification measures"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexperf:accuracy     "quot;"quot;quot;"quot;quot;quot;quot;43.3"quot;"quot;quot;"quot;quot;quot;quot;^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_329912415_exe_1 .
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.0"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-1554764744_exe_2 .
 
-this:app_329912415  a         mexcore:ApplicationContext ;
-        rdfs:label            "quot;"quot;quot;"quot;quot;quot;quot;Basic Experiment Infomation"quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:dateCopyrighted   "quot;"quot;quot;"quot;quot;quot;quot;2016.07.03 12:40:43 GMT+01:00"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:actedOnBehalfOf  this:org_329912415 ;
-        foaf:givenName        "quot;"quot;quot;"quot;quot;quot;quot;Vivi Nastase"quot;"quot;quot;"quot;quot;quot;quot; ;
-        foaf:mbox             "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:exp_cf_1_329912415_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "quot;"quot;quot;"quot;quot;quot;quot;Test"quot;"quot;quot;"quot;quot;quot;quot; .
-
-this:exp_cf_1_329912415_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "quot;"quot;quot;"quot;quot;quot;quot;Classification measures"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexperf:accuracy     "quot;"quot;quot;"quot;quot;quot;quot;47.3"quot;"quot;quot;"quot;quot;quot;quot;^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_329912415_exe_2 .
-
-this:exp_cf_1_329912415_exe_1
+this:exp_cf_1_-1554764744_exe_2
         a                         mexcore:ExecutionOverall ;
-        rdfs:label                "quot;"quot;quot;"quot;quot;quot;quot;Overall Execution: C1_MEX_EXEC_D1"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexcore:endsAtPosition    "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; ;
-        mexcore:targetClass       "quot;"quot;quot;"quot;quot;quot;quot;NA"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:generated            this:exp_cf_1_329912415_exe_1_mea_1 ;
-        prov:id                   "quot;"quot;quot;"quot;quot;quot;quot;C1_MEX_EXEC_D1"quot;"quot;quot;"quot;quot;quot;quot; ;
-        prov:used                 this:exp_cf_1_329912415_exe_2_algo , this:exp_cf_1_329912415_exe_1_phase ;
-        prov:wasInformedBy        this:exp_cf_1_329912415 .
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-1554764744_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_-1554764744_exe_2_phase , this:exp_cf_1_-1554764744_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-1554764744 .
 
-this:exp_cf_1_329912415_ds
+this:exp_cf_1_-1554764744_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:version  dct:hasVersion  "1.0.2" .
+
+this:ctx_-1554764744  a       mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_-1554764744 .
+
+this:exp_cf_1_-1554764744_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_-1554764744_ds
         a                 mexcore:Dataset ;
-        rdfs:label        "quot;"quot;quot;"quot;quot;quot;quot;Dataset Baseline "quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:description   "quot;"quot;quot;"quot;quot;quot;quot;Majority class (Participant) "quot;"quot;quot;"quot;quot;quot;quot; ;
-        dct:title         "quot;"quot;quot;"quot;quot;quot;quot;Baseline "quot;"quot;quot;"quot;quot;quot;quot; ;
-        dcat:landingPage  "quot;"quot;quot;"quot;quot;quot;quot;http://www.aclweb.org/aclwiki/index.php?title=Noun-Modifier_Semantic_Relations_(State_of_the_art)"quot;"quot;quot;"quot;quot;quot;quot; .
+        rdfs:label        "Dataset KM00 " ;
+        dct:description   "B-I-O tagging using SVM classifiers with polynomial kernel" ;
+        dct:title         "KM00 " ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=NP_Chunking_(State_of_the_art)" .
+
+this:exp_cf_1_-1554764744_tool
+        a           <http://mex.aksw.org/mex-algo#KM00 > ;
+        rdfs:label  "KM00 " .
+
+this:exp_cf_1_-1554764744_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm8" ;
+        dct:identifier    "KM00 " ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=NP_Chunking_(State_of_the_art)" .
+
+this:app_-1554764744  a       mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:08 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_-1554764744 ;
+        foaf:givenName        "Kudo and Matsumoto (2000), CONLL " ;
+        foaf:mbox             "emailexample@aclweb.org" .
+
+this:exp_cf_1_-1554764744_exe_1
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-1554764744_exe_1_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D1" ;
+        prov:used                 this:exp_cf_1_-1554764744_exe_1_phase , this:exp_cf_1_-1554764744_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-1554764744 .
+
+this:org_-1554764744  a  prov:Organization ;
+        foaf:givenName  "Not Informed" .
+
+this:exp_cf_1_-1554764744_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "93.79"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-1554764744_exe_1 .
+
+this:exp_-1554764744  a         mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "-1554764744" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "NP Chunking (State of the art)" ;
+        prov:wasAttributedTo    this:app_-1554764744 .

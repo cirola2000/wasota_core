@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_2075253413_exe_1_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_2075253413_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "78.6"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_2075253413_exe_1 .
-
-this:exp_cf_1_2075253413_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_2075253413_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_2075253413_exe_2_phase , this:exp_cf_1_2075253413_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_2075253413 .
-
-this:exp_cf_1_2075253413_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "84.7"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_2075253413_exe_2 .
-
-this:exp_cf_1_2075253413_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_2075253413_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset Multi-Perspective CNN" ;
-        dct:description   "Multi-perspective Convolutional NNs and structured similarity layer" ;
-        dct:title         "Multi-Perspective CNN" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .
-
-this:org_2075253413  a  prov:Organization ;
-        foaf:givenName  " Microsoft Research " .
-
-this:app_2075253413  a        mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:45 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_2075253413 ;
-        foaf:givenName        "Dolan, B. " ;
-        foaf:mbox             "NA" .
-
-this:exp_2075253413  a          mexcore:Experiment ;
+this:exp_170568106  a           mexcore:Experiment ;
         rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "2075253413" ;
+        mexcore:experimentHash  "170568106" ;
         dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "Paraphrase Identification (State of the art)" ;
-        prov:wasAttributedTo    this:app_2075253413 .
+        dct:title               "Temporal Information Extraction (State of the art)" ;
+        prov:wasAttributedTo    this:app_170568106 .
 
-this:version  dct:hasVersion  "1.0.2" .
-
-this:exp_cf_1_2075253413_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm246" ;
-        dct:identifier    "Multi-Perspective CNN" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .
-
-this:exp_cf_1_2075253413_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title= Paraphrase  Identification ( State  of  the  art)" .
-
-this:ctx_2075253413  a        mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_2075253413 .
-
-this:exp_cf_1_2075253413_exe_1
+this:exp_cf_1_170568106_exe_1
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_2075253413_exe_1_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_170568106_exe_1_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_2075253413_exe_1_phase , this:exp_cf_1_2075253413_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_2075253413 .
+        prov:used                 this:exp_cf_1_170568106_exe_1_phase , this:exp_cf_1_170568106_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_170568106 .
 
-this:exp_cf_1_2075253413
+this:org_170568106  a   prov:Organization ;
+        foaf:givenName  "Brandeis University " .
+
+this:exp_cf_1_170568106_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset KUL (2)" ;
+        dct:description   "Logistic regression, post-processing, rule-based normaliser" ;
+        dct:title         "KUL (2)" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Temporal_Information_Extraction_(State_of_the_art)" .
+
+this:exp_cf_1_170568106
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_2075253413_ds , this:exp_cf_1_2075253413_tool ;
-        prov:wasStartedBy  this:exp_2075253413 .
+        prov:used          this:exp_cf_1_170568106_ds , this:exp_cf_1_170568106_tool ;
+        prov:wasStartedBy  this:exp_170568106 .
+
+this:version  dct:hasVersion  "1.0.2" .
+
+this:ctx_170568106  a         mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_170568106 .
+
+this:exp_cf_1_170568106_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "75.24"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_170568106_exe_1 .
+
+this:exp_cf_1_170568106_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:app_170568106  a         mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:10 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_170568106 ;
+        foaf:givenName        "James Pustejovsky" ;
+        foaf:mbox             "tempeval@timeml.org" .
+
+this:exp_cf_1_170568106_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_170568106_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_170568106_exe_2_phase , this:exp_cf_1_170568106_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_170568106 .
+
+this:exp_cf_1_170568106_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_170568106_tool
+        a           <http://mex.aksw.org/mex-algo#KUL (2)> ;
+        rdfs:label  "KUL (2)" .
+
+this:exp_cf_1_170568106_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "62.95"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_170568106_exe_2 .
+
+this:exp_cf_1_170568106_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm252" ;
+        dct:identifier    "KUL (2)" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .

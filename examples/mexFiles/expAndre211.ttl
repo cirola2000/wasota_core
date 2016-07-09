@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_1487617452_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_1487617452_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_1487617452_exe_2_phase , this:exp_cf_1_1487617452_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_1487617452 .
-
-this:exp_cf_1_1487617452_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm211" ;
-        dct:identifier    "PMI baseline" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
-
-this:exp_cf_1_1487617452_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "33.9"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_1487617452_exe_1 .
-
-this:exp_cf_1_1487617452_exe_1_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_1487617452_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset PMI baseline" ;
-        dct:description   "Jurgens et al. (2012)" ;
-        dct:title         "PMI baseline" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
-
-this:version  dct:hasVersion  "1.0.2" .
-
-this:exp_cf_1_1487617452_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title= Sem Eval-2012  Task 2 ( State  of  the  art)" .
-
-this:app_1487617452  a        mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_1487617452 ;
-        foaf:givenName        "David A. Jurgens6" ;
-        foaf:mbox             "jurgens@stanford.edu" .
-
-this:exp_cf_1_1487617452_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_1487617452_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.112"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_1487617452_exe_2 .
-
-this:exp_cf_1_1487617452_exe_1
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_1487617452_exe_1_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_1487617452_exe_1_phase , this:exp_cf_1_1487617452_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_1487617452 .
-
-this:ctx_1487617452  a        mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_1487617452 .
-
-this:org_1487617452  a  prov:Organization ;
-        foaf:givenName  "Stanford University " .
-
-this:exp_1487617452  a          mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "1487617452" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "SemEval-2012 Task 2 (State of the art)" ;
-        prov:wasAttributedTo    this:app_1487617452 .
-
-this:exp_cf_1_1487617452
+this:exp_cf_1_983543301
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_1487617452_ds , this:exp_cf_1_1487617452_tool ;
-        prov:wasStartedBy  this:exp_1487617452 .
+        prov:used          this:exp_cf_1_983543301_ds , this:exp_cf_1_983543301_tool ;
+        prov:wasStartedBy  this:exp_983543301 .
+
+this:ctx_983543301  a         mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_983543301 .
+
+this:app_983543301  a         mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:09 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_983543301 ;
+        foaf:givenName        "David A. Jurgens12" ;
+        foaf:mbox             "jurgens@stanford.edu" .
+
+this:exp_cf_1_983543301_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm217" ;
+        dct:identifier    "Com" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
+
+this:exp_cf_1_983543301_exe_1
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_983543301_exe_1_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D1" ;
+        prov:used                 this:exp_cf_1_983543301_exe_2_algo , this:exp_cf_1_983543301_exe_1_phase ;
+        prov:wasInformedBy        this:exp_cf_1_983543301 .
+
+this:version  dct:hasVersion  "1.0.2" .
+
+this:exp_cf_1_983543301_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_983543301  a           mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "983543301" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "SemEval-2012 Task 2 (State of the art)" ;
+        prov:wasAttributedTo    this:app_983543301 .
+
+this:exp_cf_1_983543301_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset Com" ;
+        dct:description   "Zhila et al. (2013)" ;
+        dct:title         "Com" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
+
+this:exp_cf_1_983543301_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "45.2"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_983543301_exe_1 .
+
+this:exp_cf_1_983543301_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.353"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_983543301_exe_2 .
+
+this:exp_cf_1_983543301_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_983543301_tool
+        a           mexalgo:Com ;
+        rdfs:label  "Com" .
+
+this:exp_cf_1_983543301_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_983543301_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_983543301_exe_2_algo , this:exp_cf_1_983543301_exe_2_phase ;
+        prov:wasInformedBy        this:exp_cf_1_983543301 .
+
+this:org_983543301  a   prov:Organization ;
+        foaf:givenName  "Stanford University " .

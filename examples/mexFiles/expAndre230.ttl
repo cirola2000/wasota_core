@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_2074094420_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title= Paraphrase  Identification ( State  of  the  art)" .
-
-this:exp_cf_1_2074094420
-        a                  mexcore:ExperimentConfiguration ;
-        rdfs:label         "Configuration for a set of Executions" ;
-        dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_2074094420_ds , this:exp_cf_1_2074094420_tool ;
-        prov:wasStartedBy  this:exp_2074094420 .
-
-this:exp_cf_1_2074094420_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_2074094420_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_2074094420_exe_2_algo , this:exp_cf_1_2074094420_exe_2_phase ;
-        prov:wasInformedBy        this:exp_cf_1_2074094420 .
-
-this:exp_cf_1_2074094420_exe_1_phase
+this:exp_cf_1_-631098729_exe_1_phase
         a           mexcore:Test ;
         rdfs:label  "Test" .
+
+this:exp_cf_1_-631098729_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "72.0"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-631098729_exe_1 .
+
+this:exp_cf_1_-631098729_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:org_-631098729  a  prov:Organization ;
+        foaf:givenName  " Microsoft Research " .
+
+this:exp_-631098729  a          mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "-631098729" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "Paraphrase Identification (State of the art)" ;
+        prov:wasAttributedTo    this:app_-631098729 .
+
+this:app_-631098729  a        mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:10 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_-631098729 ;
+        foaf:givenName        "Dolan, B. " ;
+        foaf:mbox             "emailexample@aclweb.org" .
+
+this:exp_cf_1_-631098729_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "81.6"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-631098729_exe_2 .
+
+this:exp_cf_1_-631098729_exe_1
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-631098729_exe_1_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D1" ;
+        prov:used                 this:exp_cf_1_-631098729_exe_1_phase , this:exp_cf_1_-631098729_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-631098729 .
 
 this:version  dct:hasVersion  "1.0.2" .
 
-this:exp_cf_1_2074094420_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "76.6"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_2074094420_exe_1 .
+this:exp_cf_1_-631098729_tool
+        a           mexalgo:QKC ;
+        rdfs:label  "QKC" .
 
-this:exp_cf_1_2074094420_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "79.6"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_2074094420_exe_2 .
+this:ctx_-631098729  a        mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_-631098729 .
 
-this:exp_cf_1_2074094420_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
+this:exp_cf_1_-631098729_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-631098729_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_-631098729_exe_2_algo , this:exp_cf_1_-631098729_exe_2_phase ;
+        prov:wasInformedBy        this:exp_cf_1_-631098729 .
 
-this:exp_cf_1_2074094420_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm230" ;
-        dct:identifier    "KM" ;
+this:exp_cf_1_-631098729_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset QKC" ;
+        dct:description   "sentence dissimilarity classification" ;
+        dct:title         "QKC" ;
         dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .
 
-this:ctx_2074094420  a        mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_2074094420 .
+this:exp_cf_1_-631098729
+        a                  mexcore:ExperimentConfiguration ;
+        rdfs:label         "Configuration for a set of Executions" ;
+        dct:identifier     "MEX_EXP_CONF_D1" ;
+        prov:used          this:exp_cf_1_-631098729_ds , this:exp_cf_1_-631098729_tool ;
+        prov:wasStartedBy  this:exp_-631098729 .
 
-this:org_2074094420  a  prov:Organization ;
-        foaf:givenName  " Microsoft Research " .
-
-this:app_2074094420  a        mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_2074094420 ;
-        foaf:givenName        "Dolan, B. " ;
-        foaf:mbox             "NA" .
-
-this:exp_2074094420  a          mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "2074094420" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "Paraphrase Identification (State of the art)" ;
-        prov:wasAttributedTo    this:app_2074094420 .
-
-this:exp_cf_1_2074094420_exe_1
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_2074094420_exe_1_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_2074094420_exe_1_phase , this:exp_cf_1_2074094420_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_2074094420 .
-
-this:exp_cf_1_2074094420_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset KM" ;
-        dct:description   "combination of lexical and semantic features" ;
-        dct:title         "KM" ;
+this:exp_cf_1_-631098729_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm236" ;
+        dct:identifier    "QKC" ;
         dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .

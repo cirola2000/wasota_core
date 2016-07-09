@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_1329930956_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=WordSimilarity-353_Test_Collection_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title= Word Similarity-353  Test  Collection ( State  of  the  art)" .
+this:exp_2015455475  a          mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "2015455475" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "Similar-Associated-Both Test Collection (State of the art)" ;
+        prov:wasAttributedTo    this:app_2015455475 .
 
-this:exp_cf_1_1329930956_ds
+this:exp_cf_1_2015455475_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm185" ;
+        dct:identifier    "PairClass" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Similar-Associated-Both_Test_Collection_(State_of_the_art)" .
+
+this:exp_cf_1_2015455475_tool
+        a           mexalgo:PairClass ;
+        rdfs:label  "Pair Class" .
+
+this:exp_cf_1_2015455475_ds
         a                 mexcore:Dataset ;
-        rdfs:label        "Dataset Multi-lingual SSA" ;
-        dct:description   "Hassan et al. (2011)" ;
-        dct:title         "Multi-lingual SSA" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=WordSimilarity-353_Test_Collection_(State_of_the_art)" .
+        rdfs:label        "Dataset PairClass" ;
+        dct:description   "Turney (2008)" ;
+        dct:title         "PairClass" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Similar-Associated-Both_Test_Collection_(State_of_the_art)" .
 
-this:exp_cf_1_1329930956
+this:exp_cf_1_2015455475
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_1329930956_ds , this:exp_cf_1_1329930956_tool ;
-        prov:wasStartedBy  this:exp_1329930956 .
-
-this:exp_cf_1_1329930956_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_1329930956_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_1329930956_exe_2_phase , this:exp_cf_1_1329930956_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_1329930956 .
+        prov:used          this:exp_cf_1_2015455475_ds , this:exp_cf_1_2015455475_tool ;
+        prov:wasStartedBy  this:exp_2015455475 .
 
 this:version  dct:hasVersion  "1.0.2" .
 
-this:exp_cf_1_1329930956_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm179" ;
-        dct:identifier    "Multi-lingual SSA" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=WordSimilarity-353_Test_Collection_(State_of_the_art)" .
+this:exp_cf_1_2015455475_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "77.1"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_2015455475_exe_1 .
 
-this:org_1329930956  a  prov:Organization ;
-        foaf:givenName  "University of Szeged " .
-
-this:exp_1329930956  a          mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "1329930956" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "WordSimilarity-353 Test Collection (State of the art)" ;
-        prov:wasAttributedTo    this:app_1329930956 .
-
-this:app_1329930956  a        mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_1329930956 ;
-        foaf:givenName        "András Dobó " ;
-        foaf:mbox             "dobo@inf.u-szeged.hu " .
-
-this:exp_cf_1_1329930956_exe_1_phase
+this:exp_cf_1_2015455475_exe_1_phase
         a           mexcore:Test ;
         rdfs:label  "Test" .
 
-this:exp_cf_1_1329930956_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.713"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_1329930956_exe_1 .
-
-this:exp_cf_1_1329930956_exe_1
+this:exp_cf_1_2015455475_exe_1
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_1329930956_exe_1_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_2015455475_exe_1_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_1329930956_exe_1_phase , this:exp_cf_1_1329930956_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_1329930956 .
+        prov:used                 this:exp_cf_1_2015455475_exe_1_phase , this:exp_cf_1_2015455475_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_2015455475 .
 
-this:exp_cf_1_1329930956_exe_2_phase
+this:app_2015455475  a        mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:09 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_2015455475 ;
+        foaf:givenName        "Christine Chiarello" ;
+        foaf:mbox             "emailexample@aclweb.org" .
+
+this:exp_cf_1_2015455475_exe_2_phase
         a           mexcore:Test ;
         rdfs:label  "Test" .
 
-this:exp_cf_1_1329930956_exe_2_mea_1
+this:exp_cf_1_2015455475_exe_2_mea_1
         a                    mexperf:ClassificationMeasure ;
         rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.674"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_1329930956_exe_2 .
+        mexperf:accuracy     "84.3"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_2015455475_exe_2 .
 
-this:ctx_1329930956  a        mexcore:PosTagging ;
+this:exp_cf_1_2015455475_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_2015455475_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_2015455475_exe_2_algo , this:exp_cf_1_2015455475_exe_2_phase ;
+        prov:wasInformedBy        this:exp_cf_1_2015455475 .
+
+this:ctx_2015455475  a        mexcore:Context , mexcore:PosTagging ;
         rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_1329930956 .
+        prov:wasAttributedTo  this:app_2015455475 .
+
+this:org_2015455475  a  prov:Organization ;
+        foaf:givenName  "Syracuse University Italy " .

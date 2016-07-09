@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_-190832955
+this:exp_cf_1_2130406342_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_2130406342_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.644"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_2130406342_exe_2 .
+
+this:exp_cf_1_2130406342_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_2130406342_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_2130406342_exe_2_algo , this:exp_cf_1_2130406342_exe_2_phase ;
+        prov:wasInformedBy        this:exp_cf_1_2130406342 .
+
+this:ctx_2130406342  a        mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_2130406342 .
+
+this:org_2130406342  a  prov:Organization ;
+        foaf:givenName  "Sapienza University of Rome " .
+
+this:exp_cf_1_2130406342
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_-190832955_ds , this:exp_cf_1_-190832955_tool ;
-        prov:wasStartedBy  this:exp_-190832955 .
-
-this:exp_cf_1_-190832955_exe_1_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_-190832955_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.797"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_-190832955_exe_1 .
-
-this:exp_cf_1_-190832955_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.852"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_-190832955_exe_2 .
-
-this:exp_cf_1_-190832955_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
+        prov:used          this:exp_cf_1_2130406342_ds , this:exp_cf_1_2130406342_tool ;
+        prov:wasStartedBy  this:exp_2130406342 .
 
 this:version  dct:hasVersion  "1.0.2" .
 
-this:exp_cf_1_-190832955_exe_1
+this:exp_cf_1_2130406342_tool
+        a           <http://mex.aksw.org/mex-algo#LSA*> ;
+        rdfs:label  "LSA*" .
+
+this:exp_cf_1_2130406342_exe_1
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_-190832955_exe_1_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_2130406342_exe_1_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_-190832955_exe_2_algo , this:exp_cf_1_-190832955_exe_1_phase ;
-        prov:wasInformedBy        this:exp_cf_1_-190832955 .
+        prov:used                 this:exp_cf_1_2130406342_exe_2_algo , this:exp_cf_1_2130406342_exe_1_phase ;
+        prov:wasInformedBy        this:exp_cf_1_2130406342 .
 
-this:exp_cf_1_-190832955_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=RG-65_Test_Collection_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title=RG-65  Test  Collection ( State  of  the  art)" .
-
-this:org_-190832955  a  prov:Organization ;
-        foaf:givenName  "Sapienza University of Rome " .
-
-this:exp_-190832955  a          mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "-190832955" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "RG-65 Test Collection (State of the art)" ;
-        prov:wasAttributedTo    this:app_-190832955 .
-
-this:app_-190832955  a        mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_-190832955 ;
-        foaf:givenName        "Taher " ;
-        foaf:mbox             "NA" .
-
-this:exp_cf_1_-190832955_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_-190832955_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_-190832955_exe_2_phase , this:exp_cf_1_-190832955_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_-190832955 .
-
-this:ctx_-190832955  a        mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_-190832955 .
-
-this:exp_cf_1_-190832955_ds
+this:exp_cf_1_2130406342_ds
         a                 mexcore:Dataset ;
-        rdfs:label        "Dataset L&C" ;
-        dct:description   "Leacock and Chodorow (1998)" ;
-        dct:title         "L&C" ;
+        rdfs:label        "Dataset LSA*" ;
+        dct:description   "Landauer et al. (1997)" ;
+        dct:title         "LSA*" ;
         dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=RG-65_Test_Collection_(State_of_the_art)" .
 
-this:exp_cf_1_-190832955_exe_2_algo
+this:exp_2130406342  a          mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "2130406342" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "RG-65 Test Collection (State of the art)" ;
+        prov:wasAttributedTo    this:app_2130406342 .
+
+this:app_2130406342  a        mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:09 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_2130406342 ;
+        foaf:givenName        "Taher " ;
+        foaf:mbox             "emailexample@aclweb.org" .
+
+this:exp_cf_1_2130406342_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.609"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_2130406342_exe_1 .
+
+this:exp_cf_1_2130406342_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_2130406342_exe_2_algo
         a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm133" ;
-        dct:identifier    "L&C" ;
+        rdfs:label        "algorithm139" ;
+        dct:identifier    "LSA*" ;
         dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=RG-65_Test_Collection_(State_of_the_art)" .

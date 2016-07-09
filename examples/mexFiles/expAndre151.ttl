@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_449369870_exe_1_mea_1
+this:exp_cf_1_-326734344_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset UMBC" ;
+        dct:description   "Han et al. (2013)[6]" ;
+        dct:title         "UMBC" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SimLex-999_(State_of_the_art)" .
+
+this:exp_cf_1_-326734344_exe_1_mea_1
         a                    mexperf:ClassificationMeasure ;
         rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.7"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_449369870_exe_1 .
+        mexperf:accuracy     "0.558"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-326734344_exe_1 .
 
-this:exp_cf_1_449369870_exe_1
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_449369870_exe_1_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_449369870_exe_1_phase , this:exp_cf_1_449369870_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_449369870 .
-
-this:exp_449369870  a           mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "449369870" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "MC-28 Test Collection (State of the art)" ;
-        prov:wasAttributedTo    this:app_449369870 .
-
-this:exp_cf_1_449369870_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.0"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_449369870_exe_2 .
+this:ctx_-326734344  a        mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_-326734344 .
 
 this:version  dct:hasVersion  "1.0.2" .
 
-this:ctx_449369870  a         mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_449369870 .
-
-this:exp_cf_1_449369870_exe_1_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_449369870_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=MC-28_Test_Collection_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title=MC-28  Test  Collection ( State  of  the  art)" .
-
-this:exp_cf_1_449369870_exe_2
+this:exp_cf_1_-326734344_exe_2
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_449369870_exe_2_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-326734344_exe_2_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_449369870_exe_2_phase , this:exp_cf_1_449369870_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_449369870 .
+        prov:used                 this:exp_cf_1_-326734344_exe_2_phase , this:exp_cf_1_-326734344_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-326734344 .
 
-this:org_449369870  a   prov:Organization ;
-        foaf:givenName  "Sun Microsystems Laboratories " .
-
-this:exp_cf_1_449369870_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_449369870
+this:exp_cf_1_-326734344
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_449369870_ds , this:exp_cf_1_449369870_tool ;
-        prov:wasStartedBy  this:exp_449369870 .
+        prov:used          this:exp_cf_1_-326734344_ds , this:exp_cf_1_-326734344_tool ;
+        prov:wasStartedBy  this:exp_-326734344 .
 
-this:exp_cf_1_449369870_exe_2_algo
+this:exp_cf_1_-326734344_tool
+        a           mexalgo:UMBC ;
+        rdfs:label  "UMBC" .
+
+this:exp_cf_1_-326734344_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_-326734344_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_-326734344_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.557"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-326734344_exe_2 .
+
+this:exp_cf_1_-326734344_exe_2_algo
         a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm151" ;
-        dct:identifier    "WLM" ;
+        rdfs:label        "algorithm157" ;
+        dct:identifier    "UMBC" ;
         dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=MC-28_Test_Collection_(State_of_the_art)" .
 
-this:app_449369870  a         mexcore:ApplicationContext ;
+this:org_-326734344  a  prov:Organization ;
+        foaf:givenName  "University of Cambridge" .
+
+this:exp_-326734344  a          mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "-326734344" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "SimLex-999 (State of the art)" ;
+        prov:wasAttributedTo    this:app_-326734344 .
+
+this:app_-326734344  a        mexcore:ApplicationContext ;
         rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_449369870 ;
-        foaf:givenName        "Philip Resnik " ;
-        foaf:mbox             "philip.resnik@east.sun.com " .
+        dct:dateCopyrighted   "2016.07.08 14:13:09 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_-326734344 ;
+        foaf:givenName        "Felix Hill " ;
+        foaf:mbox             "felix.hill@cl.cam.ac.uk " .
 
-this:exp_cf_1_449369870_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset WLM" ;
-        dct:description   "Milne and Witten (2008)" ;
-        dct:title         "WLM" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=MC-28_Test_Collection_(State_of_the_art)" .
+this:exp_cf_1_-326734344_exe_1
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-326734344_exe_1_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D1" ;
+        prov:used                 this:exp_cf_1_-326734344_exe_1_phase , this:exp_cf_1_-326734344_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-326734344 .

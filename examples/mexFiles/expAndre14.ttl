@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_-1946072449_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm14" ;
-        dct:identifier    "S08 " ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=NP_Chunking_(State_of_the_art)" .
+this:exp_cf_1_-631044007_tool
+        a           <http://mex.aksw.org/mex-algo#LSA > ;
+        rdfs:label  "LSA " .
 
-this:org_-1946072449  a  prov:Organization ;
-        foaf:givenName  "NA" .
+this:ctx_-631044007  a        mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_-631044007 .
 
-this:exp_cf_1_-1946072449
+this:org_-631044007  a  prov:Organization ;
+        foaf:givenName  "Not Informed" .
+
+this:exp_cf_1_-631044007
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_-1946072449_ds , this:exp_cf_1_-1946072449_tool ;
-        prov:wasStartedBy  this:exp_-1946072449 .
+        prov:used          this:exp_cf_1_-631044007_ds , this:exp_cf_1_-631044007_tool ;
+        prov:wasStartedBy  this:exp_-631044007 .
 
-this:exp_cf_1_-1946072449_exe_2
+this:exp_cf_1_-631044007_exe_2
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_-1946072449_exe_2_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-631044007_exe_2_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_-1946072449_exe_2_phase , this:exp_cf_1_-1946072449_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_-1946072449 .
-
-this:exp_cf_1_-1946072449_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset S08 " ;
-        dct:description   "Second order latent-dynamic conditional random fields + an improved inference method based on A* search" ;
-        dct:title         "S08 " ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=POS_Induction_(State_of_the_art)#Software" .
-
-this:app_-1946072449  a       mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:43 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_-1946072449 ;
-        foaf:givenName        "Kudo and Matsumoto (2000), CONLL " ;
-        foaf:mbox             "NA" .
+        prov:used                 this:exp_cf_1_-631044007_exe_2_phase , this:exp_cf_1_-631044007_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-631044007 .
 
 this:version  dct:hasVersion  "1.0.2" .
 
-this:exp_cf_1_-1946072449_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=POS_Induction_(State_of_the_art)#Software> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title=POS  Induction ( State  of  the  art)# Software" .
+this:exp_cf_1_-631044007_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset LSA " ;
+        dct:description   "latent semantic space " ;
+        dct:title         "LSA " ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .
 
-this:exp_-1946072449  a         mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "-1946072449" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "NP Chunking (State of the art)" ;
-        prov:wasAttributedTo    this:app_-1946072449 .
+this:exp_cf_1_-631044007_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "68.8"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-631044007_exe_1 .
 
-this:exp_cf_1_-1946072449_exe_1_phase
+this:exp_cf_1_-631044007_exe_1_phase
         a           mexcore:Test ;
         rdfs:label  "Test" .
 
-this:exp_cf_1_-1946072449_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "94.34"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_-1946072449_exe_1 .
+this:exp_-631044007  a          mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "-631044007" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "Paraphrase Identification (State of the art)" ;
+        prov:wasAttributedTo    this:app_-631044007 .
 
-this:exp_cf_1_-1946072449_exe_1
+this:app_-631044007  a        mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:08 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_-631044007 ;
+        foaf:givenName        "Dolan, B. " ;
+        foaf:mbox             "emailexample@aclweb.org" .
+
+this:exp_cf_1_-631044007_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm20" ;
+        dct:identifier    "LSA " ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art)" .
+
+this:exp_cf_1_-631044007_exe_2_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:exp_cf_1_-631044007_exe_1
         a                         mexcore:ExecutionOverall ;
         rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
+        mexcore:endsAtPosition    "" ;
         mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_-1946072449_exe_1_mea_1 ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-631044007_exe_1_mea_1 ;
         prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_-1946072449_exe_2_algo , this:exp_cf_1_-1946072449_exe_1_phase ;
-        prov:wasInformedBy        this:exp_cf_1_-1946072449 .
+        prov:used                 this:exp_cf_1_-631044007_exe_2_algo , this:exp_cf_1_-631044007_exe_1_phase ;
+        prov:wasInformedBy        this:exp_cf_1_-631044007 .
 
-this:exp_cf_1_-1946072449_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_-1946072449_exe_2_mea_1
+this:exp_cf_1_-631044007_exe_2_mea_1
         a                    mexperf:ClassificationMeasure ;
         rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.0"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_-1946072449_exe_2 .
-
-this:ctx_-1946072449  a       mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_-1946072449 .
+        mexperf:accuracy     "79.9"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-631044007_exe_2 .

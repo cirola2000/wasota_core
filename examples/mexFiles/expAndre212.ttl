@@ -12,93 +12,91 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-this:exp_cf_1_1077093031_exe_2_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "0.116"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_1077093031_exe_2 .
-
-this:exp_cf_1_1077093031_exe_2_phase
-        a           mexcore:Test ;
-        rdfs:label  "Test" .
-
-this:exp_cf_1_1077093031_tool
-        a           <http://mex.aksw.org/mex-algo#http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)> ;
-        rdfs:label  "http:/ /aclweb .org /aclwiki /index .php ?title= Sem Eval-2012  Task 2 ( State  of  the  art)" .
-
-this:exp_cf_1_1077093031_exe_2
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_1077093031_exe_2_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D2" ;
-        prov:used                 this:exp_cf_1_1077093031_exe_2_phase , this:exp_cf_1_1077093031_exe_2_algo ;
-        prov:wasInformedBy        this:exp_cf_1_1077093031 .
-
-this:version  dct:hasVersion  "1.0.2" .
-
-this:org_1077093031  a  prov:Organization ;
+this:org_-120065300  a  prov:Organization ;
         foaf:givenName  "Stanford University " .
 
-this:exp_1077093031  a          mexcore:Experiment ;
-        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
-        mexcore:experimentHash  "1077093031" ;
-        dct:identifier          "MEX_EXPERIMENT" ;
-        dct:title               "SemEval-2012 Task 2 (State of the art)" ;
-        prov:wasAttributedTo    this:app_1077093031 .
-
-this:app_1077093031  a        mexcore:ApplicationContext ;
-        rdfs:label            "Basic Experiment Infomation" ;
-        dct:dateCopyrighted   "2016.07.03 12:40:44 GMT+01:00" ;
-        prov:actedOnBehalfOf  this:org_1077093031 ;
-        foaf:givenName        "David A. Jurgens7" ;
-        foaf:mbox             "jurgens@stanford.edu" .
-
-this:exp_cf_1_1077093031_exe_2_algo
-        a                 mexalgo:Algorithm ;
-        rdfs:label        "algorithm212" ;
-        dct:identifier    "UTD-SVM" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
-
-this:ctx_1077093031  a        mexcore:PosTagging ;
-        rdfs:label            "Pos Tagging" ;
-        prov:wasAttributedTo  this:app_1077093031 .
-
-this:exp_cf_1_1077093031_exe_1
-        a                         mexcore:ExecutionOverall ;
-        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
-        mexcore:endsAtPosition    "NA" ;
-        mexcore:group             true ;
-        mexcore:startsAtPosition  "NA" ;
-        mexcore:targetClass       "NA" ;
-        prov:generated            this:exp_cf_1_1077093031_exe_1_mea_1 ;
-        prov:id                   "C1_MEX_EXEC_D1" ;
-        prov:used                 this:exp_cf_1_1077093031_exe_2_algo , this:exp_cf_1_1077093031_exe_1_phase ;
-        prov:wasInformedBy        this:exp_cf_1_1077093031 .
-
-this:exp_cf_1_1077093031_ds
-        a                 mexcore:Dataset ;
-        rdfs:label        "Dataset UTD-SVM" ;
-        dct:description   "Rink & Harabagiu (2012)" ;
-        dct:title         "UTD-SVM" ;
-        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
-
-this:exp_cf_1_1077093031_exe_1_phase
+this:exp_cf_1_-120065300_exe_2_phase
         a           mexcore:Test ;
         rdfs:label  "Test" .
 
-this:exp_cf_1_1077093031_exe_1_mea_1
-        a                    mexperf:ClassificationMeasure ;
-        rdfs:label           "Classification measures" ;
-        mexperf:accuracy     "34.7"^^xsd:double ;
-        prov:wasGeneratedBy  this:exp_cf_1_1077093031_exe_1 .
+this:exp_-120065300  a          mexcore:Experiment ;
+        rdfs:label              "Experiment: MEX_EXPERIMENT" ;
+        mexcore:experimentHash  "-120065300" ;
+        dct:identifier          "MEX_EXPERIMENT" ;
+        dct:title               "SemEval-2012 Task 2 (State of the art)" ;
+        prov:wasAttributedTo    this:app_-120065300 .
 
-this:exp_cf_1_1077093031
+this:exp_cf_1_-120065300
         a                  mexcore:ExperimentConfiguration ;
         rdfs:label         "Configuration for a set of Executions" ;
         dct:identifier     "MEX_EXP_CONF_D1" ;
-        prov:used          this:exp_cf_1_1077093031_ds , this:exp_cf_1_1077093031_tool ;
-        prov:wasStartedBy  this:exp_1077093031 .
+        prov:used          this:exp_cf_1_-120065300_ds , this:exp_cf_1_-120065300_tool ;
+        prov:wasStartedBy  this:exp_-120065300 .
+
+this:exp_cf_1_-120065300_exe_2
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D2" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-120065300_exe_2_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D2" ;
+        prov:used                 this:exp_cf_1_-120065300_exe_2_phase , this:exp_cf_1_-120065300_exe_2_algo ;
+        prov:wasInformedBy        this:exp_cf_1_-120065300 .
+
+this:version  dct:hasVersion  "1.0.2" .
+
+this:exp_cf_1_-120065300_ds
+        a                 mexcore:Dataset ;
+        rdfs:label        "Dataset SuperSim" ;
+        dct:description   "Turney (2013)" ;
+        dct:title         "SuperSim" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
+
+this:exp_cf_1_-120065300_exe_1_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "47.2"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-120065300_exe_1 .
+
+this:exp_cf_1_-120065300_tool
+        a           mexalgo:SuperSim ;
+        rdfs:label  "Super Sim" .
+
+this:exp_cf_1_-120065300_exe_2_algo
+        a                 mexalgo:Algorithm ;
+        rdfs:label        "algorithm218" ;
+        dct:identifier    "SuperSim" ;
+        dcat:landingPage  "http://aclweb.org/aclwiki/index.php?title=SemEval-2012_Task_2_(State_of_the_art)" .
+
+this:exp_cf_1_-120065300_exe_2_mea_1
+        a                    mexperf:ClassificationMeasure ;
+        rdfs:label           "Classification measures" ;
+        mexperf:accuracy     "0.408"^^xsd:double ;
+        prov:wasGeneratedBy  this:exp_cf_1_-120065300_exe_2 .
+
+this:app_-120065300  a        mexcore:ApplicationContext ;
+        rdfs:label            "Basic Experiment Infomation" ;
+        dct:dateCopyrighted   "2016.07.08 14:13:09 GMT+01:00" ;
+        prov:actedOnBehalfOf  this:org_-120065300 ;
+        foaf:givenName        "David A. Jurgens13" ;
+        foaf:mbox             "jurgens@stanford.edu" .
+
+this:exp_cf_1_-120065300_exe_1
+        a                         mexcore:ExecutionOverall ;
+        rdfs:label                "Overall Execution: C1_MEX_EXEC_D1" ;
+        mexcore:endsAtPosition    "" ;
+        mexcore:group             true ;
+        mexcore:startsAtPosition  "" ;
+        prov:generated            this:exp_cf_1_-120065300_exe_1_mea_1 ;
+        prov:id                   "C1_MEX_EXEC_D1" ;
+        prov:used                 this:exp_cf_1_-120065300_exe_2_algo , this:exp_cf_1_-120065300_exe_1_phase ;
+        prov:wasInformedBy        this:exp_cf_1_-120065300 .
+
+this:exp_cf_1_-120065300_exe_1_phase
+        a           mexcore:Test ;
+        rdfs:label  "Test" .
+
+this:ctx_-120065300  a        mexcore:Context , mexcore:PosTagging ;
+        rdfs:label            "Pos Tagging" ;
+        prov:wasAttributedTo  this:app_-120065300 .
