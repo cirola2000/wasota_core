@@ -1,1 +1,1 @@
-curl -u ciro:password -H "Content-Type: application/json" -X GET http://wasota.aksw.org/api/user/performance
+curl -u ciro:password -H "Content-Type: application/json" -X POST http://wasota.aksw.org/api/user/performance
