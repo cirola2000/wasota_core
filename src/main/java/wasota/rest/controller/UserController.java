@@ -94,7 +94,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/user/performance", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/performance", method = RequestMethod.POST)
 	public List<WasotaPerformanceModel> getAllPerformance() {
 
 		// get user graphs
