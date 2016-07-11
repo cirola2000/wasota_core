@@ -39,9 +39,9 @@ public class UserController {
 	@RequestMapping(value = "/user/add", method = RequestMethod.PUT)
 	public WasotaRestModel addUser(@RequestBody String body) throws Exception {
 		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
-
-		WasotaAPI.getAuthService().addUser(new JSONObject(body).get("user").toString(),
-				new JSONObject(body).get("email").toString(), new JSONObject(body).get("password").toString());
+		
+		WasotaAPI.getAuthService().addUser(new JSONObject(body).get("registerUser").toString(),
+				new JSONObject(body).get("registerEmail").toString(), new JSONObject(body).get("registerPassword").toString());
 
 		return restMsg;
 	}

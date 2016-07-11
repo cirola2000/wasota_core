@@ -60,6 +60,7 @@ public class PerformanceController {
 		WasotaPerformance performance = new WasotaPerformance(context, precision, WasotaAPI.getWasotaGraph());
 
 		return performance;
-	}	
+	}
+	
 
 }

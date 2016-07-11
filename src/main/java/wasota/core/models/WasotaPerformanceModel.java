@@ -17,16 +17,15 @@ public class WasotaPerformanceModel implements Comparable<WasotaPerformanceModel
 	public String performanceValue;
 
 	public String url;
+	
+	public Boolean visible = true;
 
+	@Override
 	public int compareTo(WasotaPerformanceModel o) {
 		Double thisValue = Double.valueOf(this.performanceValue);
 		Double oValue = Double.valueOf(o.performanceValue);
 		
-		if (thisValue > oValue){
-			return 1;
-		}
-		else
-			return 0;
+		return Double.compare(thisValue, oValue);
 	}
 
 

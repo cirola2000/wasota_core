@@ -1,5 +1,6 @@
 package wasota.core.experiments.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,8 +9,10 @@ import org.apache.log4j.Logger;
 
 import wasota.core.WasotaAPI;
 import wasota.core.authentication.UserAuth;
+import wasota.core.exceptions.ExperimentNotFound;
 import wasota.core.exceptions.UserNotAllowed;
 import wasota.core.experiments.ExperimentsServiceInterface;
+import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.models.WasotaPerformanceModel;
 import wasota.mongo.collections.UserExperiment;
 import wasota.mongo.exceptions.MissingPropertiesException;
@@ -28,14 +31,20 @@ public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 	final static Logger logger = Logger.getLogger(ExperimentsServiceInterface.class);
 
 	@Override
-	public Boolean isPublic(String experimentURI) {
-
+	public Boolean isPublic(String experimentURI) throws ExperimentNotFound {
+		
 		UserExperiment experiment = new UserExperiment(experimentURI);
 		if (experiment.find(true)) {
-			if (experiment.getVisible())
+			if (experiment.getVisible()){
 				return true;
+			}
+			else
+				return false;
 		}
-		return true;
+		else
+			throw new ExperimentNotFound();
+			
+		
 	}
 
 	/*
@@ -72,20 +81,38 @@ public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see wasota.core.experiments.ExperimentsServiceInterface#numberOfExperiments()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * wasota.core.experiments.ExperimentsServiceInterface#numberOfExperiments()
 	 */
 	@Override
 	public int numberOfExperiments() {
-		
-		List<WasotaPerformanceModel> performanceList = WasotaAPI.getWasotaGraph().queries().getAllFinalPerformanceList();
+
+		List<WasotaPerformanceModel> performanceList = WasotaAPI.getWasotaGraph().queries()
+				.getAllFinalPerformanceList();
 		Set<String> experimentURLs = new HashSet<>();
-		
-		for(WasotaPerformanceModel model: performanceList){
+
+		for (WasotaPerformanceModel model : performanceList) {
 			experimentURLs.add(model.url);
 		}
-		
+
 		return experimentURLs.size();
+	}
+
+
+	/* (non-Javadoc)
+	 * @see wasota.core.experiments.ExperimentsServiceInterface#getContextList(wasota.core.graph.WasotaGraphInterface)
+	 */
+	@Override
+	public List<String> getContextList(WasotaGraphInterface graph) {
+
+		HashMap<String, String> l = graph.queries().getAllContext();
+		
+		for(String s : l.keySet())
+			System.out.println(s);
+		return null;
 	}
 
 }

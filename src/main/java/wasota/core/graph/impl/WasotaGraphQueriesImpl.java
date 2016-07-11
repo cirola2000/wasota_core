@@ -48,6 +48,7 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 		while (contextIt.hasNext()) {
 			Statement stmt = contextIt.next();
 			allContext.add(stmt.getSubject().toString());
+//			System.out.println(stmt.getSubject().toString());
 		}
 
 		// for each context
@@ -55,7 +56,8 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 
 			// search for some context
 			StmtIterator contextList = model.listStatements(null, null, ResourceFactory.createResource(_context));
-			// System.out.println(_context.toString());
+			 System.out.println(_context.toString());
+			
 
 			while (contextList.hasNext()) {
 				Statement r = contextList.next();

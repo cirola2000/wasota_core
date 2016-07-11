@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import wasota.comparators.PerformanceComparator;
 import wasota.core.WasotaAPI;
+import wasota.core.exceptions.ExperimentNotFound;
 import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.models.WasotaPerformanceModel;
 
@@ -47,12 +49,18 @@ public class WasotaPerformance {
 		
 		
 		for(WasotaPerformanceModel performance : performanceList){
-			if(WasotaAPI.getExperimentService().isPublic(performance.url)){
+			try {
+				if(WasotaAPI.getExperimentService().isPublic(performance.url)){
+					performanceListFinal.add(performance);
+				}
+			} catch (ExperimentNotFound e) {
 				performanceListFinal.add(performance);
+
 			}
 		}
 		
-		Collections.sort(performanceListFinal);
+		
+		Collections.sort(performanceListFinal, new PerformanceComparator());
 		
 		return performanceListFinal; 
 

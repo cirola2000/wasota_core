@@ -198,12 +198,12 @@ public class WasotaAPI {
 			}
 		return wasotaGraph;
 	}
-	
+
 	/**
 	 * @return the graphUserService
 	 */
 	public static GraphUserServiceInterface getGraphUserService() {
-		if(graphUserService == null)
+		if (graphUserService == null)
 			try {
 				throw new Exception("GraphUserServiceInterface should be implemented.");
 			} catch (Exception e) {
@@ -215,11 +215,16 @@ public class WasotaAPI {
 
 	public static WasotaGraphInterface getNewGraph() {
 		try {
-			return (WasotaGraphInterface) wasotaGraph.getClass().newInstance();
+			WasotaGraphInterface graph = (WasotaGraphInterface) wasotaGraph.getClass().newInstance();
+			graph.addMexNamespacesToModel();
+			return graph;
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CannotAddMexNamespaces e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
