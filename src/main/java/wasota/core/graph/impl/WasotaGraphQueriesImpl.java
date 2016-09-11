@@ -229,16 +229,16 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 
 		List<WasotaPerformanceModel> performanceListFinal = new ArrayList<WasotaPerformanceModel>();
 
-		int i = 0 ;
 		for (String measure : measureClassification) {
-			
-			System.out.println(i++);
-			
+						
+			StmtIterator perfTypeIt = null;
 			for (String per : performanceType) {
-				StmtIterator perfTypeIt = model.listStatements(ResourceFactory.createResource(measure),
+				perfTypeIt = model.listStatements(ResourceFactory.createResource(measure),
 						ResourceFactory.createProperty(per), (RDFNode) null);
+				
+				Statement stmt = null;
 				while (perfTypeIt.hasNext()) {
-					Statement stmt = perfTypeIt.next();
+					stmt = perfTypeIt.next();
 
 					WasotaPerformanceModel result = new WasotaPerformanceModel();
 					result.performance = stmt.getPredicate().toString();
@@ -254,9 +254,11 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 					StmtIterator stmeIt = model.listStatements(measureStmt.getObject().asResource(), MexPredicates.used,
 							(RDFNode) null);
 
+					Statement stmtAlg = null;
+
 					// get algorithms
 					while (stmeIt.hasNext()) {
-						Statement stmtAlg = stmeIt.next();
+						stmtAlg = stmeIt.next();
 
 						// get label
 						StmtIterator algIt = model.listStatements(stmtAlg.getObject().asResource(), MexPredicates.label,
