@@ -229,7 +229,11 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 
 		List<WasotaPerformanceModel> performanceListFinal = new ArrayList<WasotaPerformanceModel>();
 
+		int i = 0 ;
 		for (String measure : measureClassification) {
+			
+			System.out.println(i++);
+			
 			for (String per : performanceType) {
 				StmtIterator perfTypeIt = model.listStatements(ResourceFactory.createResource(measure),
 						ResourceFactory.createProperty(per), (RDFNode) null);
