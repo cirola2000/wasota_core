@@ -327,14 +327,22 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 			// get list of experiment
 			List<String> expList = getExperimentList(appList);
 
+			appList = null;
+			
 			// get list of experiment config
 			List<String> expListConfig = getExperimentConfigList(expList);
+			
+			expList = null;
 		
 			// get list of execution
 			List<String> executionList = getExecutionList(expListConfig);
 			
+			expListConfig = null;
+			
 			// get list measure classification
 			List<String> measureClassification = getMeasureList(executionList);
+			
+			executionList = null;
 
 			// get all performance types
 			for (WasotaPerformanceModel w : getFinalPerformanceList(measureClassification, getAllPerformanceTypes(measureClassification))) {
