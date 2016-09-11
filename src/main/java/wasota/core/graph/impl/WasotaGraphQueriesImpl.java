@@ -235,7 +235,6 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 						ResourceFactory.createProperty(per), (RDFNode) null);
 				while (perfTypeIt.hasNext()) {
 					Statement stmt = perfTypeIt.next();
-					String p = stmt.getObject().toString();
 
 					WasotaPerformanceModel result = new WasotaPerformanceModel();
 					result.performance = stmt.getPredicate().toString();
@@ -245,7 +244,7 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 
 					StmtIterator stmeIt2 = model.listStatements(stmt.getSubject().asResource(),
 							MexPredicates.wasGeneratedBy, (RDFNode) null);
-
+					
 					Statement measureStmt = stmeIt2.next();
 
 					StmtIterator stmeIt = model.listStatements(measureStmt.getObject().asResource(), MexPredicates.used,
@@ -280,7 +279,7 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 					StmtIterator it2 = model.listStatements(it.next().getObject().asResource(),
 							MexPredicates.wasStartedBy, (RDFNode) null);
 
-					// finally getting experiment
+					// finally, getting experiment
 					StmtIterator itEx = model.listStatements(it2.next().getSubject().asResource(),
 							MexPredicates.wasStartedBy, (RDFNode) null);
 
@@ -303,8 +302,8 @@ public class WasotaGraphQueriesImpl implements WasotaGraphQueries {
 							.listStatements(itApp.next().getObject().asResource(), FOAF.mbox, (RDFNode) null).next()
 							.getObject().toString();
 
-					itApp = model.listStatements(experimentStmt.getObject().asResource(), MexPredicates.wasAttributedTo,
-							(RDFNode) null);
+//					itApp = model.listStatements(experimentStmt.getObject().asResource(), MexPredicates.wasAttributedTo,
+//							(RDFNode) null);
 
 					performanceListFinal.add(result);
 
