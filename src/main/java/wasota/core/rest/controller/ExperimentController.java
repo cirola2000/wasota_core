@@ -1,19 +1,23 @@
 /**
  * 
  */
-package wasota.rest.controller;
+package wasota.core.rest.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import wasota.core.WasotaAPI;
+import wasota.core.WasotaGraphStarter;
+import wasota.core.WasotaGraphFactory;
 import wasota.core.exceptions.CannotAddMexNamespaces;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
+import wasota.core.experiments.ExperimentsServiceInterface;
+import wasota.core.graph.GraphStoreInterface;
 import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.models.WasotaPerformanceModel;
 import wasota.rest.messages.WasotaRestModel;
@@ -28,6 +32,15 @@ import wasota.rest.messages.WasotaRestMsg;
 @RestController
 public class ExperimentController {
 
+	@Autowired
+	GraphStoreInterface graphStore;
+
+	@Autowired
+	ExperimentsServiceInterface experimentService;
+	
+	@Autowired
+	WasotaGraphInterface wasotaGraph;
+
 	/**
 	 * Return the number of experiments
 	 * 
@@ -36,7 +49,7 @@ public class ExperimentController {
 	@RequestMapping(value = "/experiments/size", method = RequestMethod.GET)
 	public WasotaRestModel getExperimentSize() {
 
-		int numberOfExperiments = WasotaAPI.getExperimentService().numberOfExperiments();
+		int numberOfExperiments = experimentService.numberOfExperiments();
 		WasotaRestModel msg = new WasotaRestModel(WasotaRestMsg.OK, String.valueOf(numberOfExperiments).toString());
 		return msg;
 
@@ -50,7 +63,7 @@ public class ExperimentController {
 	@RequestMapping(value = "/experiments/list", method = RequestMethod.GET)
 	public List<WasotaPerformanceModel> getExperimentList() {
 
-		return WasotaAPI.getWasotaGraph().queries().getAllFinalPerformanceList();
+		return wasotaGraph.queries().getAllFinalPerformanceList();
 
 	}
 
@@ -58,17 +71,18 @@ public class ExperimentController {
 	 * Return context list of a graph
 	 * 
 	 * @return
-	 * @throws NotPossibleToSaveGraph 
-	 * @throws NotPossibleToLoadGraph 
-	 * @throws CannotAddMexNamespaces 
+	 * @throws NotPossibleToSaveGraph
+	 * @throws NotPossibleToLoadGraph
+	 * @throws CannotAddMexNamespaces
 	 */
 	@RequestMapping(value = "/experiments/graphContext", method = RequestMethod.GET)
-	public List<String> getGraphContextList(@RequestParam(value = "graphName", required = true) String graphName) throws NotPossibleToLoadGraph, CannotAddMexNamespaces {
+	public List<String> getGraphContextList(@RequestParam(value = "graphName", required = true) String graphName)
+			throws NotPossibleToLoadGraph, CannotAddMexNamespaces {
 
-		WasotaGraphInterface graph = WasotaAPI.getNewGraph();
-		WasotaAPI.getGraphStore().loadGraph(graphName, graph, "ttl");
+		WasotaGraphInterface graph = WasotaGraphFactory.getNewGraph();
+		graphStore.loadGraph(graphName, graph, "ttl");
 
-		WasotaAPI.getExperimentService().getContextList(graph);
+		experimentService.getContextList(graph);
 
 		return null;
 

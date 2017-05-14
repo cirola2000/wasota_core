@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import wasota.core.WasotaAPI;
+import wasota.core.WasotaGraphStarter;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
 import wasota.core.graph.GraphStoreInterface;
@@ -30,6 +31,9 @@ public class GraphStoreFSImpl implements GraphStoreInterface {
 	final static Logger logger = Logger.getLogger(GraphStoreInterface.class);
  
 	private HashMap<String, String> hashAndGraphNameMap = new HashMap<String, String>();
+	
+	@Autowired
+	WasotaGraphInterface wasotaGraph;
 
 	@Override
 	public Boolean loadGraph(String namedGraph, WasotaGraphInterface graph, String format)
@@ -77,7 +81,7 @@ public class GraphStoreFSImpl implements GraphStoreInterface {
 
 			InputStream stream = new ByteArrayInputStream(graphContent.toString().getBytes(StandardCharsets.UTF_8));
 
-			WasotaAPI.getWasotaGraph().mergeGraph(stream);
+			wasotaGraph.mergeGraph(stream);
 
 			logger.info("Graph '" + namedGraph + "' merged with main wasota graph.");
 

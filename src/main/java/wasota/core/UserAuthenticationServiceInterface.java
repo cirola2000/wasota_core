@@ -1,8 +1,6 @@
-package wasota.core.authentication;
+package wasota.core;
 
-import java.util.List;
-
-import wasota.core.graph.WasotaGraphInterface;
+import wasota.core.authentication.UserAuth;
 
 /**
  * Interface with methods to handle with user data

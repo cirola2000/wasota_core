@@ -1,7 +1,8 @@
-package wasota.core.graph;
+package wasota.core;
 
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
+import wasota.core.graph.WasotaGraphInterface;
 
 /**
  * Interface which offers useful methods for loading a graph, creating a graph, etc..
@@ -9,6 +10,7 @@ import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
  * 
  * Jul 3, 2016
  */
+
 public interface GraphServiceInterface {
 	
 	/**

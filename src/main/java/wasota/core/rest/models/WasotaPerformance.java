@@ -1,26 +1,34 @@
-package wasota.rest.models;
+package wasota.core.rest.models;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import wasota.comparators.PerformanceComparator;
-import wasota.core.WasotaAPI;
 import wasota.core.exceptions.ExperimentNotFound;
+import wasota.core.experiments.ExperimentsServiceInterface;
 import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.models.WasotaPerformanceModel;
 
+@Component
+@Scope(value="prototype")
 public class WasotaPerformance {
-
-	public WasotaPerformance(String context, String performanceType, WasotaGraphInterface wasotaGraph) {
-		performanceByContextAndType(context, performanceType, wasotaGraph);
-	}
+	
+	@Autowired
+	ExperimentsServiceInterface experimentService;
+	
+	@Autowired 
+	WasotaGraphInterface wasotaGraph;
 
 	private List<WasotaPerformanceModel> performanceList;
 
 	public List<WasotaPerformanceModel> performanceListFinal = new ArrayList<>();
 
-	public List<WasotaPerformanceModel> performanceByContextAndType(String context, String performanceType, WasotaGraphInterface wasotaGraph) {
+	public List<WasotaPerformanceModel> performanceByContextAndType(String context, String performanceType) {
 
 		// pipeline to get all measures
 
@@ -50,7 +58,7 @@ public class WasotaPerformance {
 		
 		for(WasotaPerformanceModel performance : performanceList){
 			try {
-				if(WasotaAPI.getExperimentService().isPublic(performance.url)){
+				if(experimentService.isPublic(performance.url)){
 					performanceListFinal.add(performance);
 				}
 			} catch (ExperimentNotFound e) {

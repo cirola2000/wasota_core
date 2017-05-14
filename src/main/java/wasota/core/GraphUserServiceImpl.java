@@ -1,25 +1,25 @@
 /**
  * 
  */
-package wasota.core.graph.impl;
+package wasota.core;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.jena.riot.system.StreamRDFWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
-import wasota.core.WasotaAPI;
 import wasota.core.authentication.UserAuth;
 import wasota.core.exceptions.CannotAddMexNamespaces;
 import wasota.core.exceptions.ExperimentNotFound;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
-import wasota.core.graph.GraphUserServiceInterface;
+import wasota.core.experiments.ExperimentsServiceInterface;
+import wasota.core.graph.GraphStoreInterface;
 import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.models.WasotaPerformanceModel;
 import wasota.mongo.collections.UserGraph;
@@ -29,15 +29,16 @@ import wasota.mongo.collections.UserGraph;
  * 
  *         Jul 3, 2016
  */
-public class GraphUserServiceImpl implements GraphUserServiceInterface {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * wasota.core.graph.GraphUserServiceInterface#getAllGraphs(wasota.core.
-	 * authentication.UserAuth)
-	 */
+@Service
+public class GraphUserServiceImpl implements GraphUserServiceInterface {
+	
+	@Autowired
+	GraphStoreInterface graphStore;
+	
+	@Autowired
+	ExperimentsServiceInterface experimentService;
+
 	@Override
 	public List<String> getAllGraphs(UserAuth user) {
 
@@ -54,13 +55,6 @@ public class GraphUserServiceImpl implements GraphUserServiceInterface {
 		return graphs;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * wasota.core.graph.GraphUserServiceInterface#getAllPerformance(wasota.core
-	 * .authentication.UserAuth)
-	 */
 	@Override
 	public List<WasotaPerformanceModel> getAllPerformance(UserAuth user) {
 		List<String> graphNames = getAllGraphs(user);
@@ -68,18 +62,16 @@ public class GraphUserServiceImpl implements GraphUserServiceInterface {
 		HashMap<String, WasotaPerformanceModel> map = new HashMap<String, WasotaPerformanceModel>();
 
 		for (String graphName : graphNames) {
-			WasotaGraphInterface wasotaGraph = WasotaAPI.getNewGraph();
+			WasotaGraphInterface wasotaGraph = WasotaGraphFactory.getNewGraph();
 			try {
 				wasotaGraph.addMexNamespacesToModel();
 			} catch (CannotAddMexNamespaces e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			try {
-				WasotaAPI.getGraphStore().loadGraph(graphName, wasotaGraph, "ttl");
+				graphStore.loadGraph(graphName, wasotaGraph, "ttl");
 
 			} catch (NotPossibleToLoadGraph e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			performanceList.addAll(wasotaGraph.queries().getAllFinalPerformanceList());
@@ -96,17 +88,14 @@ public class GraphUserServiceImpl implements GraphUserServiceInterface {
 		
 		for(WasotaPerformanceModel model : performanceList){
 			try {
-				if(!WasotaAPI.getExperimentService().isPublic(model.url))
+				if(!experimentService.isPublic(model.url))
 					model.visible = false;
 			} catch (ExperimentNotFound e) {
 				model.visible = true;
 			}
 		}
 		
-		
-		
 		return performanceList;
-
 	}
 
 }

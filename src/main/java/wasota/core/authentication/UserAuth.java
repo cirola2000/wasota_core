@@ -16,8 +16,6 @@ public class UserAuth {
 
 	private String email;
 
-	
-	
 	/**
 	 * 
 	 * Constructor for Class UserAuth 

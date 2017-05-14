@@ -1,12 +1,13 @@
-package wasota.rest.controller;
+package wasota.core.rest.controller;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import wasota.core.WasotaAPI;
+import wasota.core.graph.WasotaGraphInterface;
 /**
  * 
  * @author Ciro Baron Neto
@@ -16,6 +17,9 @@ import wasota.core.WasotaAPI;
 @RestController
 public class ContextController {
 
+	@Autowired
+	WasotaGraphInterface wasotaGraph;
+	
 	/**
 	 * Return a list of context
 	 * @return
@@ -23,7 +27,7 @@ public class ContextController {
 	@RequestMapping(value = "/context", method = RequestMethod.GET)
 	public HashMap<String, String>  getAllContext() {
 		
-		HashMap<String, String> context = WasotaAPI.getWasotaGraph().queries().getAllContext();
+		HashMap<String, String> context = wasotaGraph.queries().getAllContext();
 		return context;
 	}	
 	

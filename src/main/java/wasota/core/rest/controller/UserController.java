@@ -1,20 +1,31 @@
-package wasota.rest.controller;
+package wasota.core.rest.controller;
 
 import java.util.List;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import wasota.core.WasotaAPI;
+import wasota.core.GraphServiceInterface;
+import wasota.core.GraphUserServiceImpl;
+import wasota.core.GraphUserServiceInterface;
+import wasota.core.UserAuthenticationServiceInterface;
+import wasota.core.WasotaGraphStarter;
+import wasota.core.exceptions.CannotAddMexNamespaces;
 import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.UserNotAllowed;
+import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
+import wasota.core.experiments.ExperimentsServiceInterface;
+import wasota.core.graph.GraphStoreInterface;
+import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.models.WasotaPerformanceModel;
-import wasota.rest.messages.WasotaRestMsg;
 import wasota.rest.messages.WasotaRestModel;
+import wasota.rest.messages.WasotaRestMsg;
 import wasota.utils.JSONUtils;
 
 /**
@@ -24,24 +35,41 @@ import wasota.utils.JSONUtils;
  *         Jul 3, 2016
  */
 @RestController
+@Component
 public class UserController {
 
+	@Autowired
+	GraphUserServiceInterface graphUserService;
+
+	@Autowired
+	GraphServiceInterface graphService;
+	
+	@Autowired
+	UserAuthenticationServiceInterface userAuth;
+	
+	@Autowired
+	ExperimentsServiceInterface experimentService;
+	
+
+	
 	/**
 	 * Add a new user
 	 * 
 	 * @param body
 	 *            - should be a PUT with a JSON body containing a 'user',
 	 *            'email', and a 'password' key. An example of body to retrieve
-	 *            all accuracy of fact prediction:
-	 *            "{'user':'ciro', 'password': 'mypassword', 'email':'myemail@gmail.com'}"
+	 *            all accuracy of fact prediction: "{'user':'ciro', 'password':
+	 *            'mypassword', 'email':'myemail@gmail.com'}"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/user/add", method = RequestMethod.PUT)
 	public WasotaRestModel addUser(@RequestBody String body) throws Exception {
-		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 		
-		WasotaAPI.getAuthService().addUser(new JSONObject(body).get("registerUser").toString(),
-				new JSONObject(body).get("registerEmail").toString(), new JSONObject(body).get("registerPassword").toString());
+		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
+
+		userAuth.addUser(new JSONObject(body).get("registerUser").toString(),
+				new JSONObject(body).get("registerEmail").toString(),
+				new JSONObject(body).get("registerPassword").toString());
 
 		return restMsg;
 	}
@@ -61,16 +89,16 @@ public class UserController {
 	public WasotaRestModel addUserGraph(@RequestBody String body) throws NotPossibleToSaveGraph, ParameterNotFound {
 
 		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
-		
+
 		// get all parameters from POST request
 		String format = JSONUtils.getField(body.toString(), "format");
 		String graphName = JSONUtils.getField(body.toString(), "graphName");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
 		// case there is, link the graph and experiments with the user
-		WasotaAPI.getGraphService().createGraphWithUser(graph, graphName,
-				WasotaAPI.getAuthService().getAuthenticatedUser().getUser(), format);
-		
+		graphService.createGraphWithUser(graph, graphName,
+				userAuth.getAuthenticatedUser().getUser(), format);
+
 		return restMsg;
 	}
 
@@ -83,8 +111,8 @@ public class UserController {
 	public List<String> getUserGraphs() {
 
 		// get user graphs
-		List<String> graphs = WasotaAPI.getGraphUserService()
-				.getAllGraphs(WasotaAPI.getAuthService().getAuthenticatedUser());
+		List<String> graphs = graphUserService
+				.getAllGraphs(userAuth.getAuthenticatedUser());
 
 		return graphs;
 	}
@@ -98,8 +126,8 @@ public class UserController {
 	public List<WasotaPerformanceModel> getAllPerformance() {
 
 		// get user graphs
-		List<WasotaPerformanceModel> graphs = WasotaAPI.getGraphUserService()
-				.getAllPerformance(WasotaAPI.getAuthService().getAuthenticatedUser());
+		List<WasotaPerformanceModel> graphs = graphUserService
+				.getAllPerformance(userAuth.getAuthenticatedUser());
 
 		return graphs;
 	}
@@ -116,13 +144,13 @@ public class UserController {
 	 * @throws ParameterNotFound
 	 */
 	@RequestMapping(value = "/user/changeExperiment", method = RequestMethod.PUT)
-	public WasotaRestModel  changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound {
+	public WasotaRestModel changeExperiment(@RequestBody String body) throws UserNotAllowed, ParameterNotFound {
 		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 		String experimentURI = JSONUtils.getField(body.toString(), "experimentURI");
 
-		WasotaAPI.getExperimentService().changeExperimentState(experimentURI,
-				WasotaAPI.getAuthService().getAuthenticatedUser());
-		
+		experimentService.changeExperimentState(experimentURI,
+				userAuth.getAuthenticatedUser());
+
 		return restMsg;
 
 	}

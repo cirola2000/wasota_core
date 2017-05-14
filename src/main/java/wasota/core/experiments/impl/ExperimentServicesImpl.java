@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import wasota.core.WasotaAPI;
+import wasota.core.WasotaGraphStarter;
 import wasota.core.authentication.UserAuth;
 import wasota.core.exceptions.ExperimentNotFound;
 import wasota.core.exceptions.UserNotAllowed;
@@ -29,6 +30,9 @@ import wasota.mongo.exceptions.ObjectAlreadyExistsException;
 public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 
 	final static Logger logger = Logger.getLogger(ExperimentsServiceInterface.class);
+	
+	@Autowired
+	WasotaGraphInterface wasotaGraph;
 
 	@Override
 	public Boolean isPublic(String experimentURI) throws ExperimentNotFound {
@@ -43,17 +47,9 @@ public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 		}
 		else
 			throw new ExperimentNotFound();
-			
 		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * wasota.core.experiments.ExperimentsServiceInterface#chengeExperimentState
-	 * (java.lang.String, wasota.core.authentication.UserAuth)
-	 */
 	@Override
 	public Boolean changeExperimentState(String experimentURI, UserAuth user) throws UserNotAllowed {
 
@@ -81,16 +77,10 @@ public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * wasota.core.experiments.ExperimentsServiceInterface#numberOfExperiments()
-	 */
 	@Override
 	public int numberOfExperiments() {
 
-		List<WasotaPerformanceModel> performanceList = WasotaAPI.getWasotaGraph().queries()
+		List<WasotaPerformanceModel> performanceList = wasotaGraph.queries()
 				.getAllFinalPerformanceList();
 		Set<String> experimentURLs = new HashSet<>();
 
@@ -101,10 +91,6 @@ public class ExperimentServicesImpl implements ExperimentsServiceInterface {
 		return experimentURLs.size();
 	}
 
-
-	/* (non-Javadoc)
-	 * @see wasota.core.experiments.ExperimentsServiceInterface#getContextList(wasota.core.graph.WasotaGraphInterface)
-	 */
 	@Override
 	public List<String> getContextList(WasotaGraphInterface graph) {
 

@@ -1,7 +1,11 @@
-package wasota.rest;
+package wasota.core;
 
 import java.io.File;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,13 +23,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import wasota.core.WasotaAPI;
 import wasota.core.authentication.UserAuth;
-import wasota.core.authentication.impl.UserAuthenticationMongoImpl;
+import wasota.core.exceptions.CannotAddMexNamespaces;
+import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
+import wasota.core.experiments.ExperimentsServiceInterface;
 import wasota.core.experiments.impl.ExperimentServicesImpl;
-import wasota.core.graph.impl.GraphServiceImpl;
+import wasota.core.graph.GraphStoreInterface;
+import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.graph.impl.GraphStoreFSImpl;
-import wasota.core.graph.impl.GraphUserServiceImpl;
 import wasota.core.graph.impl.WasotaGraphJenaImpl;
 import wasota.properties.WasotaProperties;
 
@@ -48,16 +53,53 @@ public class Application {
 		file = new File(WasotaProperties.INDEX_FOLDER_PATH);
 		if (!file.exists())
 			file.mkdirs();
-
-		// set API implementations
-		WasotaAPI.setAuthServiceImplementation(new UserAuthenticationMongoImpl());
-		WasotaAPI.setExperimentImplementation(new ExperimentServicesImpl());
-		WasotaAPI.setGraphServiceImplementation(new GraphServiceImpl());
-		WasotaAPI.setGraphStoreImplementation(new GraphStoreFSImpl());
-		WasotaAPI.setWasotaGraphImplementation(new WasotaGraphJenaImpl());
-		WasotaAPI.setGraphUserService(new GraphUserServiceImpl());
-
 	}
+	
+	@Autowired
+	GraphStoreInterface graphStore;
+	
+	@Autowired
+	WasotaGraphInterface wasotaGraph;
+
+	@PostConstruct
+	public void doStuff() {
+		try {
+
+			// add MEX namespaces to graph
+			wasotaGraph.addMexNamespacesToModel();
+
+			List<String> graphNames = graphStore.getAllGraphNames();
+
+			// load all stored graphs
+			for (String namedGraph : graphNames) {
+				graphStore.loadGraph(namedGraph, wasotaGraph, "ttl");
+			}
+
+		} catch (CannotAddMexNamespaces | NotPossibleToLoadGraph e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+@Configuration
+class WasotaConfig {
+
+	@Bean
+	public GraphStoreInterface getGraphStoreFS() {
+		return new GraphStoreFSImpl();
+	}
+
+//	@Bean
+//	public WasotaGraphInterface getWasotaGraph() {
+//		return new WasotaGraphJenaImpl();
+//	}
+
+	@Bean
+	public ExperimentsServiceInterface getExperimentServices() {
+		return new ExperimentServicesImpl();
+	}
+
 }
 
 @Configuration
@@ -69,6 +111,9 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 		auth.userDetailsService(userDetailsService());
 	}
 
+	@Autowired
+	UserAuthenticationServiceInterface userAuth = new UserAuthenticationMongoImpl();
+
 	@Bean
 	UserDetailsService userDetailsService() {
 		return new UserDetailsService() {
@@ -76,7 +121,7 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-				UserAuth user = WasotaAPI.getAuthService().loadUser(username);
+				UserAuth user = userAuth.loadUser(username);
 
 				if (user != null)
 					return new User(user.getUser(), user.getPassword(), true, true, true, true,

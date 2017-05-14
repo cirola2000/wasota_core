@@ -13,7 +13,7 @@ do
          -F graphName=$line \
          -F format=ttl \
          -F graph=@./tmp.ttl \
-         http://wasota.aksw.org/api/graphFile
+         http://localhost:8080/graphFile
 
        echo "Name read from file - $name"
    done < "$filename"

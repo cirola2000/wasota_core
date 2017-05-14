@@ -1,1 +1,1 @@
-curl -H "Content-Type: application/json" -X GET  http://localhost:8090/context
+curl -H "Content-Type: application/json" -X GET  http://localhost:8080/context

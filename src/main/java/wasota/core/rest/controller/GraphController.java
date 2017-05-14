@@ -1,9 +1,10 @@
-package wasota.rest.controller;
+package wasota.core.rest.controller;
 
 import java.io.IOException;
 import java.io.StringWriter;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import wasota.core.WasotaAPI;
+import wasota.core.GraphServiceInterface;
+import wasota.core.WasotaGraphStarter;
 import wasota.core.exceptions.ParameterNotFound;
 import wasota.core.exceptions.graph.NotPossibleToLoadGraph;
 import wasota.core.exceptions.graph.NotPossibleToSaveGraph;
@@ -30,6 +32,9 @@ import wasota.utils.JSONUtils;
 public class GraphController {
 
 	final static Logger logger = Logger.getLogger(GraphController.class);
+	
+	@Autowired
+	GraphServiceInterface graphService;
 
 	/**
 	 * Add new public graph in Wasota
@@ -55,7 +60,7 @@ public class GraphController {
 		String graphName = JSONUtils.getField(body.toString(), "graphName");
 		String graph = JSONUtils.getField(body.toString(), "graph");
 
-		WasotaAPI.getGraphService().createGraph(graph, graphName, format);
+		graphService.createGraph(graph, graphName, format);
 
 		return restMsg;
 
@@ -79,11 +84,9 @@ public class GraphController {
 			@RequestParam(value = "format", required = true) String format)
 					throws ParameterNotFound, NotPossibleToSaveGraph, IOException {
 		
-		System.out.println(graph.toString());
-
 		WasotaRestModel restMsg = new WasotaRestModel(WasotaRestMsg.OK, "");
 
-		WasotaAPI.getGraphService().createGraph(FileUtils.convertStreamToString(graph.getInputStream()), graphName, format);
+		graphService.createGraph(FileUtils.convertStreamToString(graph.getInputStream()), graphName, format);
 
 		return restMsg;
 
@@ -103,7 +106,7 @@ public class GraphController {
 
 		StringWriter out = new StringWriter();
 
-		WasotaAPI.getGraphService().loadGraph(graphName).writeAsString(out);
+		graphService.loadGraph(graphName).writeAsString(out);
 
 		return out.toString();
 	}

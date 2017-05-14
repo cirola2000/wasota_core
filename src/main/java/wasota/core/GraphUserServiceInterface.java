@@ -1,7 +1,7 @@
 /**
  * 
  */
-package wasota.core.graph;
+package wasota.core;
 
 import java.util.List;
 

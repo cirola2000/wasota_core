@@ -1,11 +1,10 @@
-package wasota.core.authentication.impl;
+package wasota.core;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
-import wasota.core.WasotaAPI;
 import wasota.core.authentication.UserAuth;
-import wasota.core.authentication.UserAuthenticationServiceInterface;
 import wasota.mongo.collections.UserModel;
 import wasota.mongo.exceptions.MissingPropertiesException;
 import wasota.mongo.exceptions.NoPKFoundException;
@@ -17,6 +16,7 @@ import wasota.mongo.exceptions.ObjectAlreadyExistsException;
  * 
  * Jul 3, 2016
  */
+@Service
 public class UserAuthenticationMongoImpl implements UserAuthenticationServiceInterface{
 
 	final static Logger logger = Logger.getLogger(UserAuthenticationMongoImpl.class);
@@ -59,7 +59,7 @@ public class UserAuthenticationMongoImpl implements UserAuthenticationServiceInt
 	@Override
 	public UserAuth getAuthenticatedUser() {
 		// query the spring security to find out the authenticated user
-		return WasotaAPI.getAuthService().loadUser(SecurityContextHolder.getContext().getAuthentication().getName());
+		return loadUser(SecurityContextHolder.getContext().getAuthentication().getName());
 	}
 
 }

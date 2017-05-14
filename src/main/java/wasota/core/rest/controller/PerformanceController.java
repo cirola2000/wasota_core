@@ -1,14 +1,14 @@
-package wasota.rest.controller;
+package wasota.core.rest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import wasota.core.WasotaAPI;
 import wasota.core.exceptions.ParameterNotFound;
-import wasota.rest.models.WasotaPerformance;
-import wasota.rest.models.WasotaPerformanceAll;
+import wasota.core.rest.models.WasotaPerformance;
+import wasota.core.rest.models.WasotaPerformanceAll;
 import wasota.utils.JSONUtils;
 
 /**
@@ -21,6 +21,11 @@ import wasota.utils.JSONUtils;
 @RestController
 public class PerformanceController {
 
+	@Autowired
+	WasotaPerformanceAll performanceAll;
+	@Autowired
+	WasotaPerformance performance;
+
 	/**
 	 * Get all performance from a given context
 	 * 
@@ -31,13 +36,13 @@ public class PerformanceController {
 	 * @return
 	 * @throws ParameterNotFound
 	 */
+
 	@RequestMapping(value = "/performance", method = RequestMethod.POST)
 	public WasotaPerformanceAll getPerformance(@RequestBody String body) throws ParameterNotFound {
+		
+		performanceAll.performanceByContext(JSONUtils.getField(body.toString(), "context"));
 
-		WasotaPerformanceAll performance = new WasotaPerformanceAll(JSONUtils.getField(body.toString(), "context"),
-				WasotaAPI.getWasotaGraph());
-
-		return performance;
+		return performanceAll;
 	}
 
 	/**
@@ -57,7 +62,7 @@ public class PerformanceController {
 		String context = JSONUtils.getField(body.toString(), "context");
 		String precision = JSONUtils.getField(body.toString(), "performance");
 
-		WasotaPerformance performance = new WasotaPerformance(context, precision, WasotaAPI.getWasotaGraph());
+		performance.performanceByContextAndType(context, precision);
 
 		return performance;
 	}

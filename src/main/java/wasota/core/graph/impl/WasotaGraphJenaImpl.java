@@ -6,25 +6,28 @@ import java.io.StringWriter;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
-import wasota.core.WasotaAPI;
 import wasota.core.exceptions.CannotAddMexNamespaces;
 import wasota.core.graph.WasotaGraphInterface;
 import wasota.core.graph.WasotaGraphQueries;
 import wasota.properties.WasotaProperties;
 import wasota.utils.Formats;
 
+@Service
+@Scope(value="singleton")
 public class WasotaGraphJenaImpl implements WasotaGraphInterface {
-	
+
 	final static Logger logger = Logger.getLogger(WasotaGraphJenaImpl.class);
-	
+
 	Model model = ModelFactory.createDefaultModel();
-	
+
 	WasotaGraphQueries queries = new WasotaGraphQueriesImpl(model);
-	
+
 	String graphName;
 
 	@Override
@@ -32,7 +35,7 @@ public class WasotaGraphJenaImpl implements WasotaGraphInterface {
 		if (model.write(out, "TTL") != null)
 			return true;
 		return false;
-	} 
+	}
 
 	@Override
 	public void readAsStream(InputStream in, String format) {
@@ -45,7 +48,7 @@ public class WasotaGraphJenaImpl implements WasotaGraphInterface {
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Start the main model adding MEX namespaces
 	 * 
@@ -58,7 +61,7 @@ public class WasotaGraphJenaImpl implements WasotaGraphInterface {
 			mergeGraph(new URL(WasotaProperties.MEX_CORE_DOWNLOAD).openConnection().getInputStream());
 			mergeGraph(new URL(WasotaProperties.MEX_PERF_DOWNLOAD).openConnection().getInputStream());
 			mergeGraph(new URL(WasotaProperties.MEX_ALGO_DOWNLOAD).openConnection().getInputStream());
-			
+
 			logger.debug("MEX namespaces added to graph.");
 
 		} catch (Exception e1) {
@@ -67,7 +70,7 @@ public class WasotaGraphJenaImpl implements WasotaGraphInterface {
 		}
 
 	}
-	
+
 	/**
 	 * Merge a JENA graph (as inputstream) to model
 	 * 
@@ -83,7 +86,5 @@ public class WasotaGraphJenaImpl implements WasotaGraphInterface {
 	public WasotaGraphQueries queries() {
 		return queries;
 	}
-	
 
-	
 }
